@@ -10,8 +10,7 @@ public class Pickup : MonoBehaviour,IInteractable
     
     private void Start()
     {
-        m_TextMeshProUGUI.gameObject.SetActive(false);
-      
+        m_TextMeshProUGUI.enabled = false;
     }
     public void Interact()  
     {
@@ -22,6 +21,7 @@ public class Pickup : MonoBehaviour,IInteractable
         if (m_TextMeshProUGUI.gameObject.activeSelf && player !=  null)
         {
             Vector3 dir = m_TextMeshProUGUI.transform.position - player.transform.position;
+            // make sure the direction points at the EYES of the player rather then his genitals
 
             m_TextMeshProUGUI.transform.rotation= Quaternion.LookRotation(dir);
         }
@@ -33,7 +33,7 @@ public class Pickup : MonoBehaviour,IInteractable
         if (other.transform.CompareTag("Player"))
         {
             player = other.gameObject;
-            m_TextMeshProUGUI.gameObject.SetActive(true);
+            m_TextMeshProUGUI.enabled = true;
         }
     }
 
@@ -41,7 +41,8 @@ public class Pickup : MonoBehaviour,IInteractable
     {
         if (other.transform.CompareTag("Player"))
         {
-            m_TextMeshProUGUI.gameObject.SetActive(false);
+            m_TextMeshProUGUI.enabled = false;
+
         }
     }
 }
