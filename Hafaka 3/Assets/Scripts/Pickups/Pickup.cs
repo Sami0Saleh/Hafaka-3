@@ -6,11 +6,12 @@ using UnityEngine;
 public class Pickup : MonoBehaviour,IInteractable
 {
     [SerializeField] TextMeshPro m_TextMeshProUGUI;
-    private GameObject player;
+    PlayerHealth playerHealth = null;
     
     private void Start()
     {
         m_TextMeshProUGUI.enabled = false;
+     
     }
     public void Interact()  
     {
@@ -18,9 +19,9 @@ public class Pickup : MonoBehaviour,IInteractable
     }
     private void Update()
     {
-        if (m_TextMeshProUGUI.gameObject.activeSelf && player !=  null)
+        if (m_TextMeshProUGUI.gameObject.activeSelf && playerHealth !=  null)
         {
-            Vector3 dir = m_TextMeshProUGUI.transform.position - player.transform.position;
+            Vector3 dir = m_TextMeshProUGUI.transform.position - playerHealth.Eyes.transform.position;
             // make sure the direction points at the EYES of the player rather then his genitals
 
             m_TextMeshProUGUI.transform.rotation= Quaternion.LookRotation(dir);
@@ -32,7 +33,7 @@ public class Pickup : MonoBehaviour,IInteractable
     {
         if (other.transform.CompareTag("Player"))
         {
-            player = other.gameObject;
+           other.TryGetComponent(out playerHealth);
             m_TextMeshProUGUI.enabled = true;
         }
     }
