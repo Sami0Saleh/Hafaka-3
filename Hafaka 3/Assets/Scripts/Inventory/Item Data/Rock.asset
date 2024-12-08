@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a650dbb0c2396c468b23ba9880fed75, type: 3}
-  m_Name: Branch
+  m_Name: Rock
   m_EditorClassIdentifier: 
-  ItemName: Branch
-  ItemSprite: {fileID: 21300000, guid: ff7bfa7addf40784d86f62b8e4a034a6, type: 3}
+  ItemName: Rock
+  ItemSprite: {fileID: 21300000, guid: 0a1eed9c5b74d8b4da46374910c1063a, type: 3}
   AmountInStack: 1
   MaxStackSize: 100
-  ItemID: 1
+  ItemID: 2
