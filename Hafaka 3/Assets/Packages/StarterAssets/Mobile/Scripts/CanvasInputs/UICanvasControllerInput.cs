@@ -27,7 +27,11 @@ namespace StarterAssets
         {
             starterAssetsInputs.SprintInput(virtualSprintState);
         }
-        
+
+        public void VirtualInventoryInput(bool virtualInventoryState)
+        {
+            starterAssetsInputs.InventoryInput(virtualInventoryState);
+        }
     }
 
 }

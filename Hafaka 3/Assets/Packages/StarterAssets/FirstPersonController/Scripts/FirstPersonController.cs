@@ -64,6 +64,7 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
+		[SerializeField] Inventory _inventory;
 	
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
@@ -95,7 +96,7 @@ namespace StarterAssets
 			}
 		}
 
-		private void Start()
+        private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
@@ -115,7 +116,12 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-		}
+            if (_input.inventory)
+            {
+                _inventory.SetInventory();
+				_input.inventory = !_input.inventory;
+            }
+        }
 
 		private void LateUpdate()
 		{
@@ -265,4 +271,5 @@ namespace StarterAssets
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
 	}
+	
 }
