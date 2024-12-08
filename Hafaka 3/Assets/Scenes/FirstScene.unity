@@ -6483,11 +6483,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2559545557578259388, guid: 59f405ded8290e34c801c79ca15261c5, type: 3}
       propertyPath: m_fontSize
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2559545557578259388, guid: 59f405ded8290e34c801c79ca15261c5, type: 3}
       propertyPath: m_fontSizeBase
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2616037903312590210, guid: 59f405ded8290e34c801c79ca15261c5, type: 3}
       propertyPath: m_LocalScale.x
