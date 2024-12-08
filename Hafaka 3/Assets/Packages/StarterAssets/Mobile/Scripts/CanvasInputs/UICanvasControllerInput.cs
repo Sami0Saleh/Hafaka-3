@@ -32,6 +32,11 @@ namespace StarterAssets
         {
             starterAssetsInputs.InventoryInput(virtualInventoryState);
         }
+
+        public void VirtualInteractInput(bool virtualInteractState)
+        {
+            starterAssetsInputs.InteractInput(virtualInteractState);
+        }
     }
 
 }

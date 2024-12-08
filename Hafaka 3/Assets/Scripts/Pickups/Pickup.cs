@@ -5,16 +5,39 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Pickup : MonoBehaviour,IInteractable
 {
+    public static event System.Action<Pickup> OnItemPickup;
+
+    [SerializeField] private ItemData _itemData;
     [SerializeField] TextMeshPro m_TextMeshProUGUI;
+
     private GameObject player;
-    
+    private Inventory inventory;
+
+    private bool isPlayerNearby;
+
+    // Local stack amount for this instance of the item
+    [SerializeField] private int _amountInStack;
+
+    public ItemData ItemData => _itemData;
+    public int AmountInStack => _amountInStack;
+
+    private void Awake()
+    {
+        // Initialize the local stack amount from the scriptable object
+        _amountInStack = _itemData.AmountInStack;
+    }
+
     private void Start()
     {
         m_TextMeshProUGUI.enabled = false;
     }
     public void Interact()  
     {
-        throw new System.NotImplementedException();
+        if (inventory != null && inventory.TryAddItem(this))
+        {
+            OnItemPickup?.Invoke(this);
+            Destroy(gameObject);
+        }
     }
     private void Update()
     {
@@ -33,6 +56,8 @@ public class Pickup : MonoBehaviour,IInteractable
         if (other.transform.CompareTag("Player"))
         {
             player = other.gameObject;
+            inventory = other.GetComponent<Inventory>();
+            isPlayerNearby = true;
             m_TextMeshProUGUI.enabled = true;
         }
     }
@@ -41,8 +66,11 @@ public class Pickup : MonoBehaviour,IInteractable
     {
         if (other.transform.CompareTag("Player"))
         {
+            isPlayerNearby = false;
             m_TextMeshProUGUI.enabled = false;
-
         }
     }
+    public bool IsPlayerNearby() => isPlayerNearby;
+
+
 }

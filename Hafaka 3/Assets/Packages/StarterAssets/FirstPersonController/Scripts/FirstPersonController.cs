@@ -65,7 +65,8 @@ namespace StarterAssets
 		private float _fallTimeoutDelta;
 
 		[SerializeField] Inventory _inventory;
-	
+		private Pickup nearbyPickup;
+
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
 #endif
@@ -79,11 +80,11 @@ namespace StarterAssets
 		{
 			get
 			{
-				#if ENABLE_INPUT_SYSTEM
+#if ENABLE_INPUT_SYSTEM
 				return _playerInput.currentControlScheme == "KeyboardMouse";
-				#else
+#else
 				return false;
-				#endif
+#endif
 			}
 		}
 
@@ -96,7 +97,7 @@ namespace StarterAssets
 			}
 		}
 
-        private void Start()
+		private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
@@ -116,12 +117,16 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-            if (_input.inventory)
-            {
-                _inventory.SetInventory();
+			if (_input.inventory)
+			{
+				_inventory.SetInventory();
 				_input.inventory = !_input.inventory;
-            }
-        }
+			}
+			if (_input.interact && nearbyPickup != null && nearbyPickup.IsPlayerNearby())
+			{
+				nearbyPickup.Interact();
+			}
+		}
 
 		private void LateUpdate()
 		{
@@ -142,7 +147,7 @@ namespace StarterAssets
 			{
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
+
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
 
@@ -270,6 +275,21 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.TryGetComponent<Pickup>(out Pickup pickup))
+			{
+				nearbyPickup = pickup;
+			}
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			if (other.TryGetComponent<Pickup>(out Pickup pickup) && nearbyPickup == pickup)
+			{
+				nearbyPickup = null;
+			}
+		}
 	}
-	
 }

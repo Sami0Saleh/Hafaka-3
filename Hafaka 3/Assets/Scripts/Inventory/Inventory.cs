@@ -8,12 +8,12 @@ public class Inventory : MonoBehaviour
 
     private void OnEnable()
     {
-        Item.OnItemPickup += HandleItemPickup;
+        Pickup.OnItemPickup += HandleItemPickup;
     }
 
     private void OnDisable()
     {
-        Item.OnItemPickup -= HandleItemPickup;
+        Pickup.OnItemPickup -= HandleItemPickup;
     }
 
 
@@ -22,12 +22,12 @@ public class Inventory : MonoBehaviour
         _inventory.SetActive(!_inventory.activeInHierarchy);
     }
 
-    public bool TryAddItem(Item item)
+    public bool TryAddItem(Pickup pickup)
     {
-        int amountToAdd = item.AmountInStack;
-        ItemData itemData = item.ItemData;
+        int amountToAdd = pickup.AmountInStack;
+        ItemData itemData = pickup.ItemData;
 
-        // First, try to add to existing slots with the same item
+        // First, try to add to existing slots with the same pickup
         foreach (Slot slot in _slots)
         {
             if (slot.HasItem && slot.IsSameItem(itemData) && !slot.IsFull)
@@ -52,12 +52,12 @@ public class Inventory : MonoBehaviour
         }
 
         // If no space is available, notify the player
-        Debug.Log("Inventory Full! Cannot pick up item.");
+        Debug.Log("Inventory Full! Cannot pick up pickup.");
         return false;
     }
 
-    private void HandleItemPickup(Item item)
+    private void HandleItemPickup(Pickup pickup)
     {
-        // Additional logic if needed when an item is picked up
+        // Additional logic if needed when an pickup is picked up
     }
 }
