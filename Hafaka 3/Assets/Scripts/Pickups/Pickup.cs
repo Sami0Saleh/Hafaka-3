@@ -10,7 +10,7 @@ public class Pickup : MonoBehaviour,IInteractable
     [SerializeField] private ItemData _itemData;
     [SerializeField] TextMeshPro m_TextMeshProUGUI;
 
-    private GameObject player;
+    private PlayerHealth player;
     private Inventory inventory;
 
     private bool isPlayerNearby;
@@ -43,7 +43,7 @@ public class Pickup : MonoBehaviour,IInteractable
     {
         if (m_TextMeshProUGUI.gameObject.activeSelf && player !=  null)
         {
-            Vector3 dir = m_TextMeshProUGUI.transform.position - player.transform.position;
+            Vector3 dir = m_TextMeshProUGUI.transform.position - player.Eyes.transform.position;
             // make sure the direction points at the EYES of the player rather then his genitals
 
             m_TextMeshProUGUI.transform.rotation= Quaternion.LookRotation(dir);
@@ -55,10 +55,13 @@ public class Pickup : MonoBehaviour,IInteractable
     {
         if (other.transform.CompareTag("Player"))
         {
-            player = other.gameObject;
-            inventory = other.GetComponent<Inventory>();
-            isPlayerNearby = true;
-            m_TextMeshProUGUI.enabled = true;
+            if (other.TryGetComponent(out player))
+            {
+                inventory = other.GetComponent<Inventory>();
+                isPlayerNearby = true;
+                m_TextMeshProUGUI.enabled = true;
+            }
+            
         }
     }
 
