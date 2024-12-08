@@ -30,6 +30,8 @@ public class Pickup : MonoBehaviour,IInteractable
     private void Start()
     {
         m_TextMeshProUGUI.enabled = false;
+        m_TextMeshProUGUI.text = $"Press E to pick up the {ItemData.name}";
+        m_TextMeshProUGUI.fontSize = 1f;
     }
     public void Interact()  
     {
@@ -43,9 +45,10 @@ public class Pickup : MonoBehaviour,IInteractable
     {
         if (m_TextMeshProUGUI.gameObject.activeSelf && player !=  null)
         {
+            
             Vector3 dir = m_TextMeshProUGUI.transform.position - player.Eyes.transform.position;
             // make sure the direction points at the EYES of the player rather then his genitals
-
+            
             m_TextMeshProUGUI.transform.rotation= Quaternion.LookRotation(dir);
         }
            
