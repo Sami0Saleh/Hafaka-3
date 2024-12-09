@@ -1,8 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour
+public class Slot : MonoBehaviour,IPointerDownHandler
 {
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private TMP_Text _amountText;
@@ -13,6 +15,8 @@ public class Slot : MonoBehaviour
     public bool HasItem => _slotItemData != null;
     public bool IsFull => _currentStackAmount >= _slotItemData.MaxStackSize;
     public int RemainingCapacity => _slotItemData.MaxStackSize - _currentStackAmount;
+
+    public static event Action<Slot> OnSlotPressed;
 
     private void Start()
     {
@@ -56,5 +60,11 @@ public class Slot : MonoBehaviour
             slotImage.sprite = _defaultSprite;
             _amountText.text = string.Empty;
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnSlotPressed?.Invoke(this);
+        Debug.Log("Pressed");
     }
 }

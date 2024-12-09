@@ -130,6 +130,16 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
+			if (_inventory.GetInventory.activeSelf)
+			{
+				Cursor.lockState = CursorLockMode.None;
+				return;
+			}
+			else
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+			}
+			
 			CameraRotation();
 		}
 

@@ -6,6 +6,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] private GameObject _inventory;
     [SerializeField] private Slot[] _slots;
 
+    public GameObject GetInventory { get => _inventory; }
+    
+
     private void OnEnable()
     {
         Pickup.OnItemPickup += HandleItemPickup;
