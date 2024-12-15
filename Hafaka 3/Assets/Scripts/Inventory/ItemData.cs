@@ -8,4 +8,5 @@ public class ItemData : ScriptableObject
     public int AmountInStack = 1;
     public int MaxStackSize = 100;
     public int ItemID;
+    public GameObject ItemPrefab;
 }
