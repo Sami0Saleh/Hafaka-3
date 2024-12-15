@@ -98,7 +98,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             // If dropped on an invalid area, return the item to its original slot
             if (eventData.pointerEnter == null || !eventData.pointerEnter.GetComponent<Slot>())
             {
-                UpdateSlotUI();
+                DropItem();
             }
         }
     }
@@ -124,14 +124,17 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         if (_item != null)
         {
-            if (UIManager.Instance.DropItem)
+            // Find the player's position and forward direction
+            GameObject player = GameObject.FindWithTag("Player"); // Ensure your player GameObject has the "Player" tag
+            if (player != null)
             {
-                // Instantiate item in the world
-                Vector3 dropPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                dropPosition.z = 0; // Ensure item is dropped on the ground
+                Transform playerTransform = player.transform;
+                Vector3 dropPosition = playerTransform.position + playerTransform.forward * 1.5f; // Drop 1.5 units in front of the player
+                //dropPosition.y = 0; // Ensure the item is dropped on the ground
 
+                // Instantiate item in the world
                 GameObject droppedItem = Instantiate(_item.Data.ItemPrefab, dropPosition, Quaternion.identity);
-                Debug.Log($"Dropped {_item.Data.ItemName} into the world.");
+                Debug.Log($"Dropped {_item.Data.ItemName} in front of the player at {dropPosition}.");
 
                 Destroy(_item.gameObject);
                 _item = null;
@@ -139,11 +142,8 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             }
             else
             {
-                // Return item to the slot
-                UpdateSlotUI();
+                Debug.LogWarning("Player not found! Ensure the Player GameObject has the 'Player' tag.");
             }
         }
     }
-
-    
 }

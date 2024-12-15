@@ -5,9 +5,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    [SerializeField] private GameObject _dropConfirmationPanel;
-
-    public bool DropItem = false;
 
     private void Awake()
     {
@@ -18,19 +15,5 @@ public class UIManager : MonoBehaviour
         }
         Instance = this;
     }
-
-    public void OpenConfirmDropPanel()
-    {
-        _dropConfirmationPanel.SetActive(true);
-    }
-    public void ConfirmDropItem()
-    {
-        DropItem = true;
-        _dropConfirmationPanel.SetActive(false);
-    }
-    public void DontDropItem()
-    {
-        DropItem = false;
-        _dropConfirmationPanel.SetActive(false);
-    }
+    
 }

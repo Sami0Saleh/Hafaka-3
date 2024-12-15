@@ -17,4 +17,4 @@ MonoBehaviour:
   AmountInStack: 1
   MaxStackSize: 100
   ItemID: 2
-  ItemPrefab: {fileID: 5788394767721553810, guid: e815ca9a0e577b245b741f9a61ba2bb0, type: 3}
+  ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
