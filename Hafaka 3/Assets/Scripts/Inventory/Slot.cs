@@ -133,7 +133,13 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 //dropPosition.y = 0; // Ensure the item is dropped on the ground
 
                 // Instantiate item in the world
-                GameObject droppedItem = Instantiate(_item.Data.ItemPrefab, dropPosition, Quaternion.identity);
+                GameObject droppedItem = Instantiate(_item.Data.ItemPrefab, dropPosition, transform.rotation.normalized);
+                BoxPickup droppedBox = droppedItem.GetComponent<BoxPickup>();
+                if (droppedBox != null)
+                {
+                    droppedBox.ItemData = _item.Data;
+                    droppedBox.AmountInStack = _item.Amount;
+                }
                 Debug.Log($"Dropped {_item.Data.ItemName} in front of the player at {dropPosition}.");
 
                 Destroy(_item.gameObject);

@@ -66,6 +66,7 @@ namespace StarterAssets
 
 		[SerializeField] Inventory _inventory;
 		private Pickup nearbyPickup;
+		private BoxPickup nearbyBoxPickup;
 
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
@@ -125,6 +126,10 @@ namespace StarterAssets
 			if (_input.interact && nearbyPickup != null && nearbyPickup.IsPlayerNearby())
 			{
 				nearbyPickup.Interact();
+			}
+			else if (_input.interact && nearbyBoxPickup != null && nearbyBoxPickup.IsPlayerNearby())
+			{
+				nearbyBoxPickup.Interact();
 			}
 		}
 
@@ -292,6 +297,10 @@ namespace StarterAssets
 			{
 				nearbyPickup = pickup;
 			}
+			else if (other.TryGetComponent<BoxPickup>(out BoxPickup boxPickup))
+			{
+                nearbyBoxPickup = boxPickup;
+			}
 		}
 
 		private void OnTriggerExit(Collider other)
@@ -299,6 +308,10 @@ namespace StarterAssets
 			if (other.TryGetComponent<Pickup>(out Pickup pickup) && nearbyPickup == pickup)
 			{
 				nearbyPickup = null;
+			}
+			else if (other.TryGetComponent<BoxPickup>(out BoxPickup Boxpickup) && nearbyBoxPickup == Boxpickup)
+			{
+                nearbyBoxPickup = null;
 			}
 		}
 	}

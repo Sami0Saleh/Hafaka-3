@@ -12,11 +12,13 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         Pickup.OnItemPickup += HandleItemPickup;
+        BoxPickup.OnBoxPickup += HandleBoxPickup;
     }
 
     private void OnDisable()
     {
         Pickup.OnItemPickup -= HandleItemPickup;
+        BoxPickup.OnBoxPickup -= HandleBoxPickup;
     }
 
 
@@ -59,7 +61,45 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public bool TryAddBox(BoxPickup boxPickup)
+    {
+        int amountToAdd = boxPickup.AmountInStack;
+        ItemData itemData = boxPickup.ItemData;
+
+        // First, try to add to existing slots with the same pickup
+        foreach (Slot slot in _slots)
+        {
+            if (slot.HasItem && slot.IsSameItem(itemData) && !slot.IsFull)
+            {
+                int stackableAmount = Mathf.Min(slot.RemainingCapacity, amountToAdd);
+                slot.AddToStack(stackableAmount);
+                amountToAdd -= stackableAmount;
+
+                if (amountToAdd <= 0)
+                    return true;
+            }
+        }
+
+        // Then, try to assign the remaining itemData to a new slot
+        foreach (Slot slot in _slots)
+        {
+            if (!slot.HasItem)
+            {
+                slot.AssignItem(itemData, amountToAdd);
+                return true;
+            }
+        }
+
+        // If no space is available, notify the player
+        Debug.Log("Inventory Full! Cannot pick up pickup.");
+        return false;
+    }
     private void HandleItemPickup(Pickup pickup)
+    {
+        // Additional logic if needed when an pickup is picked up
+    }
+    
+    private void HandleBoxPickup(BoxPickup boxPickup)
     {
         // Additional logic if needed when an pickup is picked up
     }
