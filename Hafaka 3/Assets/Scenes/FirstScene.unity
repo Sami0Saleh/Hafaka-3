@@ -1030,6 +1030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca14628ef8d25445beb8ce4ae90455b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventory: {fileID: 1406504400}
+  _craftingSystem: {fileID: 411513032}
 --- !u!4 &131059737
 Transform:
   m_ObjectHideFlags: 0
@@ -7782,6 +7784,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 131059736}
+    - target: {fileID: 6127743395552352019, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenInventoryAndCraft
+      objectReference: {fileID: 0}
     - target: {fileID: 8282378195016594486, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -7795,6 +7801,7 @@ PrefabInstance:
     - {fileID: 2503735460817007185, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}
     - {fileID: 3691920376111259090, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}
     - {fileID: 429886260692954428, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}
+    - {fileID: 8278683564188519424, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3602166897844618226, guid: 52b50eae2fa339f43b1d5579c5860a2f, type: 3}

@@ -133,7 +133,7 @@ namespace StarterAssets
 			{
 				nearbyBoxPickup.Interact();
 			}
-		}
+        }
 
 		private void LateUpdate()
 		{
@@ -142,10 +142,11 @@ namespace StarterAssets
 				Cursor.lockState = CursorLockMode.None;
 				return;
 			}
-			else
+            else
 			{
-				Cursor.lockState = CursorLockMode.None;
+				Cursor.lockState = CursorLockMode.Locked;
 			}
+			
 			
 			CameraRotation();
 		}

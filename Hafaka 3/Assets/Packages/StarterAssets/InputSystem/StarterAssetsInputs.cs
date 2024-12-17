@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool inventory;
 		public bool interact;
+		public bool escape;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -57,6 +58,12 @@ namespace StarterAssets
             Debug.Log("Interact");
             InteractInput(value.isPressed);
         }
+		
+		public void OnEscape(InputValue value)
+        {
+            Debug.Log("Interact");
+            InteractInput(value.isPressed);
+        }
 #endif
 
 
@@ -89,6 +96,11 @@ namespace StarterAssets
         public void InteractInput(bool newInteractState)
         {
             interact = newInteractState;
+        }
+		
+		public void EscapeInput(bool newEscapeState)
+        {
+            escape = newEscapeState;
         }
 
         private void OnApplicationFocus(bool hasFocus)

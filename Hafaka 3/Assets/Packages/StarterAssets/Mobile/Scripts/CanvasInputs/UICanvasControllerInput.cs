@@ -37,6 +37,11 @@ namespace StarterAssets
         {
             starterAssetsInputs.InteractInput(virtualInteractState);
         }
+        
+        public void VirtualEscapeInput(bool virtualEscapeState)
+        {
+            starterAssetsInputs.EscapeInput(virtualEscapeState);
+        }
     }
 
 }

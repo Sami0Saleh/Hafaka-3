@@ -5,6 +5,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
+    [SerializeField] Inventory _inventory;
+    [SerializeField] CraftingSystem _craftingSystem;
+
 
     private void Awake()
     {
@@ -16,8 +19,9 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
     
-    public void SetInventory()
+    public void OpenInventoryAndCraft()
     {
-        Inventory.Instance.SetInventory();
+        _inventory.SetInventory();
+        _craftingSystem.SetCraft();
     }
 }
