@@ -3,11 +3,22 @@ using UnityEngine.Rendering;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance { get; private set; }
+
     [SerializeField] private GameObject _inventory;
     [SerializeField] private Slot[] _slots;
 
     public GameObject GetInventory { get => _inventory; }
-    
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
 
     private void OnEnable()
     {

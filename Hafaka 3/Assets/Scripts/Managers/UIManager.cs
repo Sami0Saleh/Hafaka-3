@@ -16,4 +16,8 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
     
+    public void SetInventory()
+    {
+        Inventory.Instance.SetInventory();
+    }
 }

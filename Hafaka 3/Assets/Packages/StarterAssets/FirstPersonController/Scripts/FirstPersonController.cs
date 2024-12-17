@@ -65,6 +65,7 @@ namespace StarterAssets
 		private float _fallTimeoutDelta;
 
 		[SerializeField] Inventory _inventory;
+		[SerializeField] CraftingSystem _craft;
 		private Pickup nearbyPickup;
 		private BoxPickup nearbyBoxPickup;
 
@@ -96,7 +97,7 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
-		}
+        }
 
 		private void Start()
 		{
@@ -121,6 +122,7 @@ namespace StarterAssets
 			if (_input.inventory)
 			{
 				_inventory.SetInventory();
+				_craft.SetCraft();
 				_input.inventory = !_input.inventory;
 			}
 			if (_input.interact && nearbyPickup != null && nearbyPickup.IsPlayerNearby())
@@ -142,7 +144,7 @@ namespace StarterAssets
 			}
 			else
 			{
-				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.lockState = CursorLockMode.None;
 			}
 			
 			CameraRotation();

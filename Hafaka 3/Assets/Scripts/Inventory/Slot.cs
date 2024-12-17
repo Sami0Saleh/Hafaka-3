@@ -17,6 +17,8 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public bool IsFull => _item != null && _item.Amount >= _item.Data.MaxStackSize;
     public int RemainingCapacity => _item != null ? _item.Data.MaxStackSize - _item.Amount : 0;
 
+    public Item Item { get => _item; set => _item = value; }
+
     private void Start()
     {
         UpdateSlotUI();
@@ -49,13 +51,23 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         return _item != null && _item.Data.ItemID == itemData.ItemID;
     }
 
-    private void UpdateSlotUI()
+    public void UpdateSlotUI()
     {
         Image slotImage = GetComponent<Image>();
         if (_item != null)
         {
             slotImage.sprite = _item.Data.ItemSprite;
-            _amountText.text = _item.Amount >= 1 ? _item.Amount.ToString() : string.Empty;
+            if (_item.Amount >= 1)
+            {
+                _amountText.text = _item.Amount.ToString();
+            }
+            else
+            {
+                _item = null;
+                _amountText.text = string.Empty;
+                slotImage.sprite = _defaultSprite;
+            }
+             
         }
         else
         {
@@ -151,5 +163,10 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 Debug.LogWarning("Player not found! Ensure the Player GameObject has the 'Player' tag.");
             }
         }
+    }
+
+    public bool IsSameItem(string itemName)
+    {
+        return _item != null && _item.Data.ItemName == itemName;
     }
 }
