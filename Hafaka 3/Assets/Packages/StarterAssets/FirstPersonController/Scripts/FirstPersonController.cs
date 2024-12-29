@@ -119,6 +119,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Attack();
 			if (_input.inventory)
 			{
 				_inventory.SetInventory();
@@ -282,7 +283,15 @@ namespace StarterAssets
 			return Mathf.Clamp(lfAngle, lfMin, lfMax);
 		}
 
-		private void OnDrawGizmosSelected()
+        private void Attack()
+        {
+            if (_input.attack)
+            {
+                Debug.Log("Attack");
+            }
+        }
+
+        private void OnDrawGizmosSelected()
 		{
 			Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
 			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);

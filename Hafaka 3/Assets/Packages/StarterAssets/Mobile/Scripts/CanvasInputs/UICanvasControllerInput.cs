@@ -42,6 +42,11 @@ namespace StarterAssets
         {
             starterAssetsInputs.EscapeInput(virtualEscapeState);
         }
+        
+        public void VirtualAttackInput(bool virtualAttackState)
+        {
+            starterAssetsInputs.AttackInput(virtualAttackState);
+        }
     }
 
 }

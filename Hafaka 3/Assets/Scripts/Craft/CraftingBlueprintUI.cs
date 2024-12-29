@@ -17,7 +17,22 @@ public class CraftingBlueprintUI : MonoBehaviour
         _blueprint = blueprint;
         _craftingSystem = craftingSystem;
         _blueprintImage.sprite = blueprint.BluePrintSprite;
-        _blueprintText.text = $"Name: {blueprint.BluePrintName}";
+
+        string requiredItems = "";
+        if (blueprint.RockNeeded > 0)
+        {
+            requiredItems += $"Rocks: {blueprint.RockNeeded}\n";
+        }
+        if (blueprint.BranchNeeded > 0)
+        {
+            requiredItems += $"Branches: {blueprint.BranchNeeded}\n";
+        }
+        if (blueprint.FiberNeeded > 0)
+        {
+            requiredItems += $"Fibers: {blueprint.FiberNeeded}\n";
+        }
+
+        _blueprintText.text = $"Name: {blueprint.BluePrintName}\nRequired:\n{requiredItems}";
         _craftButton.onClick.AddListener(() => _craftingSystem.CraftBlueprint(_blueprint));
     }
 

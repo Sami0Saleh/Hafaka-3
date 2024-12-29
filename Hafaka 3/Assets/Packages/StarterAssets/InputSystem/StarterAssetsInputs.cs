@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool inventory;
 		public bool interact;
 		public bool escape;
+		public bool attack;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -61,8 +62,12 @@ namespace StarterAssets
 		
 		public void OnEscape(InputValue value)
         {
-            Debug.Log("Interact");
-            InteractInput(value.isPressed);
+            EscapeInput(value.isPressed);
+        }
+		
+		public void OnAttack(InputValue value)
+        {
+            AttackInput(value.isPressed);
         }
 #endif
 
@@ -101,6 +106,11 @@ namespace StarterAssets
 		public void EscapeInput(bool newEscapeState)
         {
             escape = newEscapeState;
+        }
+		
+		public void AttackInput(bool newAttackState)
+        {
+            attack = newAttackState;
         }
 
         private void OnApplicationFocus(bool hasFocus)
