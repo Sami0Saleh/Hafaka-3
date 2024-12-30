@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8b9ad4be-02d1-4d7c-9755-1de74de711fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_BaseMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_BaseMap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_Emissive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_Emissive.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_MaskMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_MaskMap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_Normal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_Normal.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_Specular.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Maya_Blinn1_Specular.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_BaseMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_BaseMap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_Emissive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_Emissive.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_MaskMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_MaskMap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_Normal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_Normal.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_Specular.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Axe/Main_Weapon_Standard_Surface1_Specular.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Main_Weapon.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Main_Weapon.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Rig_14.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Rig_14.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Body.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Body.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert2_BaseMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert2_BaseMap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert2_Normal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert2_Normal.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert2_Specular.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert2_Specular.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_BaseMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_BaseMap.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_Emissive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_Emissive.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_Normal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_Normal.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_Specular.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Imported Assets/Modeols/Skin/Rig_14_lambert3_Specular.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FirstScene.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FirstScene/NavMesh-Environment.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FirstScene/NavMesh-Environment.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FirstScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FirstScene.unity" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2qwXBdieDc6ng9R7X40cHKyCXGd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b9ad4be-02d1-4d7c-9755-1de74de711fe" name="Changes" comment="" />
+      <created>1735574478039</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1735574478039</updated>
+    </task>
+    <servers />
+  </component>
+</project>

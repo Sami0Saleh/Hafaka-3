@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -75,6 +76,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		bool hasAttacked = false;
 
 		private const float _threshold = 0.01f;
 
@@ -97,7 +99,7 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
-        }
+		}
 
 		private void Start()
 		{
@@ -119,7 +121,8 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-			Attack();
+            if (_input.attack && !hasAttacked)
+                Attack();
 			if (_input.inventory)
 			{
 				_inventory.SetInventory();
@@ -134,7 +137,7 @@ namespace StarterAssets
 			{
 				nearbyBoxPickup.Interact();
 			}
-        }
+		}
 
 		private void LateUpdate()
 		{
@@ -143,12 +146,12 @@ namespace StarterAssets
 				Cursor.lockState = CursorLockMode.None;
 				return;
 			}
-            else
+			else
 			{
 				Cursor.lockState = CursorLockMode.Locked;
 			}
-			
-			
+
+
 			CameraRotation();
 		}
 
@@ -283,15 +286,17 @@ namespace StarterAssets
 			return Mathf.Clamp(lfAngle, lfMin, lfMax);
 		}
 
-        private void Attack()
-        {
-            if (_input.attack)
-            {
-                Debug.Log("Attack");
-            }
-        }
+		private void Attack()
+		{
+			
+			
+			hasAttacked = true;
+			Debug.Log("Attack");
+			StartCoroutine(AttackCooldown());
+			
+		}
 
-        private void OnDrawGizmosSelected()
+		private void OnDrawGizmosSelected()
 		{
 			Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
 			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
@@ -311,7 +316,7 @@ namespace StarterAssets
 			}
 			else if (other.TryGetComponent<BoxPickup>(out BoxPickup boxPickup))
 			{
-                nearbyBoxPickup = boxPickup;
+				nearbyBoxPickup = boxPickup;
 			}
 		}
 
@@ -323,8 +328,14 @@ namespace StarterAssets
 			}
 			else if (other.TryGetComponent<BoxPickup>(out BoxPickup Boxpickup) && nearbyBoxPickup == Boxpickup)
 			{
-                nearbyBoxPickup = null;
+				nearbyBoxPickup = null;
 			}
+		}
+
+		private IEnumerator AttackCooldown()
+		{
+			yield return new WaitForSeconds(2f);
+			hasAttacked = false;
 		}
 	}
 }
