@@ -21,3 +21,8 @@ MonoBehaviour:
   MaxStackSize: 100
   ItemData: {fileID: 11400000, guid: b229d7524909f8b489b08516223dc18d, type: 2}
   ItemPrefab: {fileID: 6815890827017339954, guid: 5651991e3eba1564eabc2678d33c9d90, type: 3}
+  list:
+  - ingerdientType: 0
+    amount: 0
+  - ingerdientType: 1
+    amount: 0

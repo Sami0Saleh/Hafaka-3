@@ -61,6 +61,7 @@ public class CraftingSystem : MonoBehaviour
     public bool CanCraftBlueprint(BluePrintData blueprint)
     {
         // Check if the inventory has enough materials for the blueprint
+        // add Getter to get list of items in inventory
         int rocks = CountItemInInventory("Rock");
         int branches = CountItemInInventory("Branch");
         int fibers = CountItemInInventory("Fiber");

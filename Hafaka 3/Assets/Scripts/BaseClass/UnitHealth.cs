@@ -7,8 +7,8 @@ public class UnitHealth : MonoBehaviour,IDamageable
     public virtual float MaxHealth { get; protected set; }
     public bool IsAlive { get; protected set; }
 
-    public static event Action<float> OnHit;
-    public static event Action OnDeath;
+    public  event Action<float> OnHit;
+    public  event Action OnDeath;
     public virtual void TakeDamage(float damage)
     {
         Health-=damage;
