@@ -15,18 +15,19 @@ public class BluePrintData : ScriptableObject
     public ItemData ItemData;
     public GameObject ItemPrefab;
 
-    public List<IngerdientSerializable> list;
+    public List<IngerdientSerializable> RequiredIngerdients;
 }
 
 public enum IngerdientType
 {
     Rock,
     Branch,
-    Fiber
+    Fiber,
+    Spear
 }
 
 [System.Serializable]
-public class IngerdientSerializable
+public struct IngerdientSerializable
 {
     public IngerdientType ingerdientType;
     public int amount;

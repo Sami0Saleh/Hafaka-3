@@ -149,7 +149,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 BoxPickup droppedBox = droppedItem.GetComponent<BoxPickup>();
                 if (droppedBox != null)
                 {
-                    droppedBox.ItemData = _item.Data;
+                    droppedBox.itemData = _item.Data;
                     droppedBox.AmountInStack = _item.Amount;
                 }
                 Debug.Log($"Dropped {_item.Data.ItemName} in front of the player at {dropPosition}.");

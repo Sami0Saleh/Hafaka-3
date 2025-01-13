@@ -19,17 +19,9 @@ public class CraftingBlueprintUI : MonoBehaviour
         _blueprintImage.sprite = blueprint.BluePrintSprite;
 
         string requiredItems = "";
-        if (blueprint.RockNeeded > 0)
+        foreach (var item in blueprint.RequiredIngerdients)
         {
-            requiredItems += $"Rocks: {blueprint.RockNeeded}\n";
-        }
-        if (blueprint.BranchNeeded > 0)
-        {
-            requiredItems += $"Branches: {blueprint.BranchNeeded}\n";
-        }
-        if (blueprint.FiberNeeded > 0)
-        {
-            requiredItems += $"Fibers: {blueprint.FiberNeeded}\n";
+            requiredItems += $"{item.ingerdientType.ToString()}: {item.amount}\n";
         }
 
         _blueprintText.text = $"Name: {blueprint.BluePrintName}\nRequired:\n{requiredItems}";

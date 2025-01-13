@@ -9,4 +9,5 @@ public class ItemData : ScriptableObject
     public int MaxStackSize = 100;
     public int ItemID;
     public GameObject ItemPrefab;
+    public IngerdientType ingerdientType;
 }

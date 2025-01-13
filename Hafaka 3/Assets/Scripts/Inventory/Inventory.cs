@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,6 +11,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Slot[] _slots;
 
     public GameObject GetInventory { get => _inventory; }
+
+    public List<IngerdientSerializable> ingerdients;
+    private IngerdientSerializable _ingerdientType;
 
     private void Awake()
     {
@@ -42,7 +47,7 @@ public class Inventory : MonoBehaviour
     {
         int amountToAdd = pickup.AmountInStack;
         ItemData itemData = pickup.ItemData;
-
+        
         // First, try to add to existing slots with the same pickup
         foreach (Slot slot in _slots)
         {
@@ -52,8 +57,11 @@ public class Inventory : MonoBehaviour
                 slot.AddToStack(stackableAmount);
                 amountToAdd -= stackableAmount;
 
+                _ingerdientType.amount += itemData.AmountInStack;
+
+
                 if (amountToAdd <= 0)
-                    return true;
+                return true;
             }
         }
 
@@ -63,6 +71,11 @@ public class Inventory : MonoBehaviour
             if (!slot.HasItem)
             {
                 slot.AssignItem(itemData, amountToAdd);
+                
+                _ingerdientType.ingerdientType = itemData.ingerdientType;
+                _ingerdientType.amount = itemData.AmountInStack;
+                ingerdients.Add(_ingerdientType);
+
                 return true;
             }
         }
@@ -75,7 +88,7 @@ public class Inventory : MonoBehaviour
     public bool TryAddBox(BoxPickup boxPickup)
     {
         int amountToAdd = boxPickup.AmountInStack;
-        ItemData itemData = boxPickup.ItemData;
+        ItemData itemData = boxPickup.itemData;
 
         // First, try to add to existing slots with the same pickup
         foreach (Slot slot in _slots)

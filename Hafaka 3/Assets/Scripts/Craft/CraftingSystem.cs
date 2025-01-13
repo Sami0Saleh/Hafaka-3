@@ -60,29 +60,30 @@ public class CraftingSystem : MonoBehaviour
 
     public bool CanCraftBlueprint(BluePrintData blueprint)
     {
-        // Check if the inventory has enough materials for the blueprint
-        // add Getter to get list of items in inventory
-        int rocks = CountItemInInventory("Rock");
-        int branches = CountItemInInventory("Branch");
-        int fibers = CountItemInInventory("Fiber");
+        int ingCount = 0;
+        int required = 0;
+       
+        foreach (var ingredient in blueprint.RequiredIngerdients)
+        {
+            ingCount = blueprint.RequiredIngerdients.Count;
 
-        // Debug: Log inventory counts and blueprint requirements
-        Debug.Log($"Blueprint: {blueprint.BluePrintName}");
-        Debug.Log($"Rocks Needed: {blueprint.RockNeeded}, In Inventory: {rocks}");
-        Debug.Log($"Branches Needed: {blueprint.BranchNeeded}, In Inventory: {branches}");
-        Debug.Log($"Fibers Needed: {blueprint.FiberNeeded}, In Inventory: {fibers}");
+            foreach (var item in _inventory.ingerdients)
+            {
+                if (item.ingerdientType == ingredient.ingerdientType && item.amount >= ingredient.amount)
+                {
+                    required++;
+                }
+            }
+        }
 
-        // Only compare inventory count for materials that are actually needed
-        bool rocksEnough = blueprint.RockNeeded == 0 || rocks >= blueprint.RockNeeded;
-        bool branchesEnough = blueprint.BranchNeeded == 0 || branches >= blueprint.BranchNeeded;
-        bool fibersEnough = blueprint.FiberNeeded == 0 || fibers >= blueprint.FiberNeeded;
-
-        // Debug: Log each material's sufficiency check
-        Debug.Log($"Rocks Enough: {rocksEnough}");
-        Debug.Log($"Branches Enough: {branchesEnough}");
-        Debug.Log($"Fibers Enough: {fibersEnough}");
-
-        return rocksEnough && branchesEnough && fibersEnough;
+        if (required == ingCount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private int CountItemInInventory(string itemName)

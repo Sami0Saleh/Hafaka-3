@@ -4,7 +4,6 @@ public class PlayerHealth : UnitHealth
 {
     public Transform Eyes;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
@@ -13,7 +12,6 @@ public class PlayerHealth : UnitHealth
     {
         base.Awake();   
     }
-    // Update is called once per frame
     void Update()
     {
         

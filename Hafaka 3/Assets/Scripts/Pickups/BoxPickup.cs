@@ -18,18 +18,18 @@ public class BoxPickup : MonoBehaviour, IInteractable
 
     private bool isPlayerNearby;
 
-    public ItemData ItemData;
+    public ItemData itemData;
     public int AmountInStack;
     
 
     private void Start()
     {
         m_TextMeshProUGUI.enabled = false;
-        m_TextMeshProUGUI.text = $"Press E to pick up the {ItemData.name}";
+        m_TextMeshProUGUI.text = $"Press E to pick up the {itemData.name}";
         m_TextMeshProUGUI.fontSize = 1f;
         _boxDes.transform.position = transform.position + _offset;
-        _boxIcon.sprite = ItemData.ItemSprite;
-        _boxText.text = $"Item: {ItemData.ItemName}\n" +
+        _boxIcon.sprite = itemData.ItemSprite;
+        _boxText.text = $"Item: {itemData.ItemName}\n" +
             $"Amount: {AmountInStack}";
     }
     public void Interact()
