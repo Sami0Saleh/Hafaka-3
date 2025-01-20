@@ -47,7 +47,8 @@ public class Inventory : MonoBehaviour
     {
         int amountToAdd = pickup.AmountInStack;
         ItemData itemData = pickup.ItemData;
-        
+        IngerdientType ingerdientType = pickup.IngerdientType;
+
         // First, try to add to existing slots with the same pickup
         foreach (Slot slot in _slots)
         {
@@ -57,11 +58,13 @@ public class Inventory : MonoBehaviour
                 slot.AddToStack(stackableAmount);
                 amountToAdd -= stackableAmount;
 
-                _ingerdientType.amount += itemData.AmountInStack;
-
+                var ingredient = ingerdients.Find(x => x.ingerdientType == itemData.ingerdientType);
+                int index = ingerdients.IndexOf(ingredient);
+                ingredient.amount += itemData.AmountInStack;
+                ingerdients[index] = ingredient;
 
                 if (amountToAdd <= 0)
-                return true;
+                    return true;
             }
         }
 
@@ -70,8 +73,8 @@ public class Inventory : MonoBehaviour
         {
             if (!slot.HasItem)
             {
-                slot.AssignItem(itemData, amountToAdd);
-                
+                slot.AssignItem(itemData, amountToAdd, ingerdientType);
+
                 _ingerdientType.ingerdientType = itemData.ingerdientType;
                 _ingerdientType.amount = itemData.AmountInStack;
                 ingerdients.Add(_ingerdientType);
@@ -89,6 +92,7 @@ public class Inventory : MonoBehaviour
     {
         int amountToAdd = boxPickup.AmountInStack;
         ItemData itemData = boxPickup.itemData;
+        IngerdientType ingerdientType = boxPickup.ingerdientType;
 
         // First, try to add to existing slots with the same pickup
         foreach (Slot slot in _slots)
@@ -98,6 +102,11 @@ public class Inventory : MonoBehaviour
                 int stackableAmount = Mathf.Min(slot.RemainingCapacity, amountToAdd);
                 slot.AddToStack(stackableAmount);
                 amountToAdd -= stackableAmount;
+
+                var ingredient = ingerdients.Find(x => x.ingerdientType == itemData.ingerdientType);
+                int index = ingerdients.IndexOf(ingredient);
+                ingredient.amount += itemData.AmountInStack;
+                ingerdients[index] = ingredient;
 
                 if (amountToAdd <= 0)
                     return true;
@@ -109,7 +118,12 @@ public class Inventory : MonoBehaviour
         {
             if (!slot.HasItem)
             {
-                slot.AssignItem(itemData, amountToAdd);
+                slot.AssignItem(itemData, amountToAdd, ingerdientType);
+
+                _ingerdientType.ingerdientType = itemData.ingerdientType;
+                _ingerdientType.amount = itemData.AmountInStack;
+                ingerdients.Add(_ingerdientType);
+
                 return true;
             }
         }

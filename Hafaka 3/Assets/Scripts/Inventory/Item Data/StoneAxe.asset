@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemName: StoneAxe
   ItemSprite: {fileID: 21300000, guid: 420ab6e684f3aa44dbb68db31e307dce, type: 3}
   AmountInStack: 1
-  MaxStackSize: 1
-  ItemID: 2
-  ItemPrefab: {fileID: 0}
-  ingerdientType: 0
+  MaxStackSize: 100
+  ItemID: 11
+  ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
+  ingerdientType: 5

@@ -20,6 +20,7 @@ public class BoxPickup : MonoBehaviour, IInteractable
 
     public ItemData itemData;
     public int AmountInStack;
+    public IngerdientType ingerdientType;
     
 
     private void Start()

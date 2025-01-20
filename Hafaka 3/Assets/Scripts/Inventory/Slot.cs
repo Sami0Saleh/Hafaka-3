@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,7 +25,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         UpdateSlotUI();
     }
 
-    public void AssignItem(ItemData itemData, int amountToAssign)
+    public void AssignItem(ItemData itemData, int amountToAssign, IngerdientType ingerdientType)
     {
         if (_item == null)
         {
@@ -33,7 +34,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             _item = newItemObject.AddComponent<Item>();
         }
 
-        _item.Initialize(itemData, Mathf.Min(amountToAssign, itemData.MaxStackSize));
+        _item.Initialize(itemData, Mathf.Min(amountToAssign, itemData.MaxStackSize), ingerdientType);
         UpdateSlotUI();
     }
 
@@ -122,7 +123,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         {
             if (!HasItem)
             {
-                AssignItem(sourceSlot._item.Data, sourceSlot._item.Amount);
+                AssignItem(sourceSlot._item.Data, sourceSlot._item.Amount, sourceSlot._item.IngerdientType);
                 Destroy(sourceSlot._item.gameObject);
                 sourceSlot._item = null;
             }
@@ -153,6 +154,10 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                     droppedBox.AmountInStack = _item.Amount;
                 }
                 Debug.Log($"Dropped {_item.Data.ItemName} in front of the player at {dropPosition}.");
+
+                var ingredient = Inventory.Instance.ingerdients.Find(x => x.ingerdientType == _item.IngerdientType);
+                int index = Inventory.Instance.ingerdients.IndexOf(ingredient);
+                Inventory.Instance.ingerdients.RemoveAt(index);
 
                 Destroy(_item.gameObject);
                 _item = null;

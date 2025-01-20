@@ -5,10 +5,13 @@ public class Item : MonoBehaviour
     public ItemData Data { get; private set; }
     public int Amount { get; private set; }
 
-    public void Initialize(ItemData data, int amount)
+    public IngerdientType IngerdientType { get; private set; }
+
+    public void Initialize(ItemData data, int amount, IngerdientType ingerdientType)
     {
         Data = data;
         Amount = amount;
+        IngerdientType = ingerdientType;
     }
 
     public void AddAmount(int amount)

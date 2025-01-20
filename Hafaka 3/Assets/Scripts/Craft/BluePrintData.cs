@@ -24,7 +24,8 @@ public enum IngerdientType
     Branch,
     Fiber,
     Spear,
-    String
+    String,
+    StoneAxe
 }
 
 [System.Serializable]

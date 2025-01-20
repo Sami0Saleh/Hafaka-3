@@ -18,4 +18,4 @@ MonoBehaviour:
   MaxStackSize: 100
   ItemID: 0
   ItemPrefab: {fileID: 0}
-  ingerdientType: 3
+  ingerdientType: 0
