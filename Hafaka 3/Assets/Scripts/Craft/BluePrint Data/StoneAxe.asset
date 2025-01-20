@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d124d655e5860d459417d46d58678ba, type: 3}
-  m_Name: Spear BluePrint
+  m_Name: StoneAxe
   m_EditorClassIdentifier: 
-  BluePrintName: Spear
-  BluePrintSprite: {fileID: 21300000, guid: 0985f7681206e374b8dac32e6c43ada6, type: 3}
+  BluePrintName: Stone Axe
+  BluePrintSprite: {fileID: 21300000, guid: 420ab6e684f3aa44dbb68db31e307dce, type: 3}
   RockNeeded: 0
   BranchNeeded: 0
   FiberNeeded: 0
   AmountInStack: 1
   MaxStackSize: 100
-  ItemData: {fileID: 11400000, guid: b229d7524909f8b489b08516223dc18d, type: 2}
-  ItemPrefab: {fileID: 6815890827017339954, guid: 5651991e3eba1564eabc2678d33c9d90, type: 3}
+  ItemData: {fileID: 11400000, guid: ee39566c44f9d2148a189fb280c7c693, type: 2}
+  ItemPrefab: {fileID: 0}
   RequiredIngerdients:
+  - ingerdientType: 2
+    amount: 1
   - ingerdientType: 0
     amount: 1
-  - ingerdientType: 1
-    amount: 2
   - ingerdientType: 2
     amount: 1
