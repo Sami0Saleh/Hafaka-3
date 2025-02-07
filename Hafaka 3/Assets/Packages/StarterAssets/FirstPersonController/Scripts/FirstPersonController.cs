@@ -123,16 +123,26 @@ namespace StarterAssets
 			Move();
             if (_input.attack && !hasAttacked)
                 Attack();
+
 			if (_input.inventory)
 			{
-				_inventory.SetInventory();
-				_craft.SetCraft();
-				_input.inventory = !_input.inventory;
-			}
-			if (_input.interact && nearbyPickup != null && nearbyPickup.IsPlayerNearby())
+				if (!_craft.GetCraft.activeSelf)
+				{
+					_inventory.SetInventory();
+					_input.inventory = !_input.inventory;
+				}
+				else 
+				{
+					_craft.SetCraft();
+                    _input.inventory = !_input.inventory;
+                }
+            }
+
+            if (_input.interact && nearbyPickup != null && nearbyPickup.IsPlayerNearby())
 			{
 				nearbyPickup.Interact();
 			}
+
 			else if (_input.interact && nearbyBoxPickup != null && nearbyBoxPickup.IsPlayerNearby())
 			{
 				nearbyBoxPickup.Interact();
@@ -141,7 +151,7 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			if (_inventory.GetInventory.activeSelf)
+			if (_inventory.GetInventory.activeSelf || _craft.GetCraft.activeSelf)
 			{
 				Cursor.lockState = CursorLockMode.None;
 				return;

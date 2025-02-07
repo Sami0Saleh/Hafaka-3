@@ -21,6 +21,7 @@ MonoBehaviour:
   MaxStackSize: 100
   ItemData: {fileID: 0}
   ItemPrefab: {fileID: 0}
+  bluePrintType: 1
   RequiredIngerdients:
   - ingerdientType: 1
     amount: 1
