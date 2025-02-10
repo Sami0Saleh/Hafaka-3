@@ -7,6 +7,12 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] Inventory _inventory;
     [SerializeField] CraftingSystem _craftingSystem;
+    [SerializeField] GameObject _sortArrowsPanel;
+    [SerializeField] GameObject _toolsPanel;
+    [SerializeField] GameObject _weaponsPanel;
+    [SerializeField] GameObject _clothesPanel;
+    [SerializeField] GameObject _foodPanel;
+    [SerializeField] GameObject _buildingsPanel;
 
 
     private void Awake()
@@ -19,9 +25,64 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
     
-    public void OpenInventoryAndCraft()
+    public void OpenInventory()
     {
         _inventory.SetInventory();
         _craftingSystem.SetCraft();
+    }
+    public void OpenCraft()
+    {
+        _craftingSystem.SetCraft();
+        _inventory.SetInventory();
+    }
+
+    public void SortArrows()
+    {
+        _sortArrowsPanel.SetActive(!_sortArrowsPanel.activeInHierarchy);
+    }
+
+    public void Tools()
+    {
+        _toolsPanel.SetActive(!_toolsPanel.activeInHierarchy);
+        _weaponsPanel.SetActive(false);
+        _clothesPanel.SetActive(false);
+        _foodPanel.SetActive(false);
+        _buildingsPanel.SetActive(false);
+    }
+
+    public void Weapons()
+    {
+        _weaponsPanel.SetActive(!_weaponsPanel.activeInHierarchy);
+        _toolsPanel.SetActive(false);
+        _clothesPanel.SetActive(false);
+        _foodPanel.SetActive(false);
+        _buildingsPanel.SetActive(false);
+    }
+
+    public void Clothes()
+    {
+        _clothesPanel.SetActive(!_clothesPanel.activeInHierarchy);
+        _toolsPanel.SetActive(false);
+        _weaponsPanel.SetActive(false);
+        _foodPanel.SetActive(false);
+        _buildingsPanel.SetActive(false);
+    }
+
+    public void Food()
+    {
+        _foodPanel.SetActive(!_foodPanel.activeInHierarchy);
+        _toolsPanel.SetActive(false);
+        _weaponsPanel.SetActive(false);
+        _clothesPanel.SetActive(false);
+        _buildingsPanel.SetActive(false);
+    }
+
+    public void Buildings()
+    {
+        _buildingsPanel.SetActive(!_buildingsPanel.activeInHierarchy);
+        _toolsPanel.SetActive(false);
+        _weaponsPanel.SetActive(false);
+        _clothesPanel.SetActive(false);
+        _foodPanel.SetActive(false);
     }
 }

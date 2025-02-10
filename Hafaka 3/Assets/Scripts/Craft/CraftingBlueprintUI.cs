@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class CraftingBlueprintUI : MonoBehaviour
 {
     [SerializeField] private Image _bluePrint;
-    [SerializeField] private TMP_Text _blueprintText;
+    //[SerializeField] private TMP_Text _blueprintText;
     [SerializeField] private Image _blueprintImage;
-    [SerializeField] private Button _craftButton;
+    //[SerializeField] private Button _craftButton;
 
     private BluePrintData _blueprint;
     private CraftingSystem _craftingSystem;
@@ -24,14 +24,14 @@ public class CraftingBlueprintUI : MonoBehaviour
             requiredItems += $"{item.ingerdientType.ToString()}: {item.amount}\n";
         }
 
-        _blueprintText.text = $"Name: {blueprint.BluePrintName}\nRequired:\n{requiredItems}";
-        _craftButton.onClick.AddListener(() => _craftingSystem.CraftBlueprint(_blueprint));
+        //_blueprintText.text = $"Name: {blueprint.BluePrintName}\nRequired:\n{requiredItems}";
+        //_craftButton.onClick.AddListener(() => _craftingSystem.CraftBlueprint(_blueprint));
     }
 
     public void SetCraftable(bool craftable)
     {
-        _bluePrint.color = craftable ? Color.yellow : Color.red;
-        _blueprintText.fontStyle = (FontStyles)(craftable ? FontStyle.Bold : FontStyle.Normal);
-        _craftButton.interactable = craftable;
+        //_bluePrint.color = craftable ? Color.yellow : Color.red;
+        //_blueprintText.fontStyle = (FontStyles)(craftable ? FontStyle.Bold : FontStyle.Normal);
+        //_craftButton.interactable = craftable;
     }
 }

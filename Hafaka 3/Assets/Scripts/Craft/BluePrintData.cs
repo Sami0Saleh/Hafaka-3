@@ -14,6 +14,7 @@ public class BluePrintData : ScriptableObject
     public int MaxStackSize = 100;
     public ItemData ItemData;
     public GameObject ItemPrefab;
+    public BluePrintType bluePrintType;
 
     public List<IngerdientSerializable> RequiredIngerdients;
 }
@@ -28,9 +29,22 @@ public enum IngerdientType
     StoneAxe
 }
 
+public enum BluePrintType
+{
+    Tool,
+    Weapon,
+    Cloth,
+    Food,
+    Building
+}
+
 [System.Serializable]
 public struct IngerdientSerializable
 {
     public IngerdientType ingerdientType;
     public int amount;
+}
+public struct BluePrintSerializable
+{
+    public BluePrintType bluePrintType;
 }
