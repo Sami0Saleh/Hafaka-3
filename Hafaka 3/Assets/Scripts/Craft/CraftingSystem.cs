@@ -85,7 +85,7 @@ public class CraftingSystem : MonoBehaviour
         {
             if (CanCraftBlueprint(blueprint))
             {
-                _blueprintUIElements[blueprint].transform.SetAsFirstSibling(); // Move to the top of the list
+                //_blueprintUIElements[blueprint].transform.SetAsFirstSibling(); // Move to the top of the list
                 _blueprintUIElements[blueprint].GetComponent<CraftingBlueprintUI>().SetCraftable(true);
             }
             else
