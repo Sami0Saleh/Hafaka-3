@@ -15,6 +15,7 @@ public class BluePrintData : ScriptableObject
     public ItemData ItemData;
     public GameObject ItemPrefab;
     public BluePrintType bluePrintType;
+    public bool IsFavourite;
 
     public List<IngerdientSerializable> RequiredIngerdients;
 }

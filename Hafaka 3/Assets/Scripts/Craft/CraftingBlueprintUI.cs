@@ -5,12 +5,17 @@ using UnityEngine.UI;
 public class CraftingBlueprintUI : MonoBehaviour
 {
     [SerializeField] private Image _bluePrint;
-    //[SerializeField] private TMP_Text _blueprintText;
     [SerializeField] private Image _blueprintImage;
-    //[SerializeField] private Button _craftButton;
+    [SerializeField] private Image _star;
+    [SerializeField] private Sprite _emptyStar;
+    [SerializeField] private Sprite _fullStar;
+    [SerializeField] private Button _button;
+
 
     private BluePrintData _blueprint;
     private CraftingSystem _craftingSystem;
+    private bool _craftable;
+
 
     public void SetBlueprint(BluePrintData blueprint, CraftingSystem craftingSystem)
     {
@@ -18,20 +23,26 @@ public class CraftingBlueprintUI : MonoBehaviour
         _craftingSystem = craftingSystem;
         _blueprintImage.sprite = blueprint.BluePrintSprite;
 
-        string requiredItems = "";
-        foreach (var item in blueprint.RequiredIngerdients)
+        if (blueprint.IsFavourite)
         {
-            requiredItems += $"{item.ingerdientType.ToString()}: {item.amount}\n";
+            _star.sprite = _fullStar;
         }
-
-        //_blueprintText.text = $"Name: {blueprint.BluePrintName}\nRequired:\n{requiredItems}";
-        //_craftButton.onClick.AddListener(() => _craftingSystem.CraftBlueprint(_blueprint));
+        else
+        {
+            _star.sprite = _emptyStar;
+        }
+        //CraftPanel.OnCraftPanel += SetButton;
     }
 
     public void SetCraftable(bool craftable)
     {
-        //_bluePrint.color = craftable ? Color.yellow : Color.red;
-        //_blueprintText.fontStyle = (FontStyles)(craftable ? FontStyle.Bold : FontStyle.Normal);
-        //_craftButton.interactable = craftable;
+        _craftable = craftable;
+    }
+
+    public void SetButton()
+    {
+
+        //CraftPanel.Instance.SetCraftPanel(this, _blueprint, _craftingSystem);
+        //CraftPanel.Instance.SetCraftable(_craftable);
     }
 }
