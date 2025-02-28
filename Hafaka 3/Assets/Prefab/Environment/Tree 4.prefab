@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5993847947337725134, guid: c56551828627bd54db20e694cf6d863e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5993847947337725134, guid: c56551828627bd54db20e694cf6d863e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8380157826906577798, guid: c56551828627bd54db20e694cf6d863e, type: 3}
