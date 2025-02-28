@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: b2f705c86d0027f49ac88f84ec3a5671, type: 2}
-  m_TextMeshProUGUI: {fileID: 0}
+  m_TextMeshProUGUI: {fileID: 5223515004077453004}
   _amountInStack: 0
   ingerdientType: 0
 --- !u!4 &4538329359524660941 stripped

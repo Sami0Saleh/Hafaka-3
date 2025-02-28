@@ -290,6 +290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemData: {fileID: 11400000, guid: 53fa677973332a4418186a7c0e0cb431, type: 2}
-  m_TextMeshProUGUI: {fileID: 0}
+  m_TextMeshProUGUI: {fileID: 86205011105622068}
   _amountInStack: 0
   ingerdientType: 2
