@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: cb65c8bf62e05d34498a76889237a58e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4b7ad2387c21764438f6747fd073350b, type: 2}
+      objectReference: {fileID: 2100000, guid: dadddf09ecd76314f9c91c91ca136c30, type: 2}
     - target: {fileID: 919132149155446097, guid: cb65c8bf62e05d34498a76889237a58e, type: 3}
       propertyPath: m_Name
       value: Dogwood Night
