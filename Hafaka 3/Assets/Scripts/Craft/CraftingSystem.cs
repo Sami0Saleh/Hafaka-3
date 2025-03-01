@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,7 +86,6 @@ public class CraftingSystem : MonoBehaviour
         {
             if (CanCraftBlueprint(blueprint))
             {
-                //_blueprintUIElements[blueprint].transform.SetAsFirstSibling(); // Move to the top of the list
                 _blueprintUIElements[blueprint].GetComponent<CraftingBlueprintUI>().SetCraftable(true);
             }
             else
@@ -140,10 +140,15 @@ public class CraftingSystem : MonoBehaviour
     {
         if (CanCraftBlueprint(blueprint))
         {
+            foreach (var ingredient in blueprint.RequiredIngerdients)
+            {
+                RemoveItemFromInventory(ingredient.ingerdientType.ToString(), ingredient.amount);
+                
+            }
             // Deduct materials from inventory
-            RemoveItemFromInventory("Rock", blueprint.RockNeeded);
+            /*RemoveItemFromInventory("Rock", blueprint.RockNeeded);
             RemoveItemFromInventory("Branch", blueprint.BranchNeeded);
-            RemoveItemFromInventory("Fiber", blueprint.FiberNeeded);
+            RemoveItemFromInventory("Fiber", blueprint.FiberNeeded);*/
 
             // Add the crafted item to the inventory
             _inventory.TryAddItem(new Pickup { ItemData = blueprint.ItemData, AmountInStack = blueprint.AmountInStack });
@@ -165,8 +170,23 @@ public class CraftingSystem : MonoBehaviour
             {
                 int amountToRemoveFromSlot = Mathf.Min(amountToRemove, slot.Item.Amount);
                 slot.Item.RemoveAmount(amountToRemoveFromSlot);
+               
+
+                var ingredient = _inventory.ingerdients.Find(x => x.ingerdientType == slot.Item.IngerdientType);
+                int index = _inventory.ingerdients.IndexOf(ingredient);
+                ingredient.amount -= amountToRemove;
+                if (ingredient.amount <= 0)
+                {
+                    _inventory.ingerdients.RemoveAt(index);
+                }
+                else
+                {
+                    _inventory.ingerdients[index] = ingredient;
+                }
+
                 amountToRemove -= amountToRemoveFromSlot;
                 slot.UpdateSlotUI();
+                index = 0;
                 /*if (slot.Item.Amount <= 0)
                 {
                     slot.UpdateSlotUI();
