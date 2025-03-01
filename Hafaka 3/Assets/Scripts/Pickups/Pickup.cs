@@ -18,11 +18,11 @@ public class Pickup : MonoBehaviour, IInteractable
     // Local stack amount for this instance of the item
     [SerializeField] private int _amountInStack;
 
-    [SerializeField] private IngerdientType ingerdientType;
+    private IngerdientType ingerdientType;
 
     public ItemData ItemData { get => _itemData; set => _itemData = value; }
     public int AmountInStack { get => _amountInStack; set => _amountInStack = value; }
-    public IngerdientType IngerdientType { get => ingerdientType; set => ingerdientType = value; }
+    public IngerdientType IngerdientType { get => _itemData.ingerdientType; set => _itemData.ingerdientType = value; }
 
     private void Awake()
     {

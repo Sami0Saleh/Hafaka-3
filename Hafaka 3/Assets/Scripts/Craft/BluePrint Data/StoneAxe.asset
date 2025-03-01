@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BluePrintName: Stone Axe
   BluePrintSprite: {fileID: 21300000, guid: 420ab6e684f3aa44dbb68db31e307dce, type: 3}
-  RockNeeded: 0
-  BranchNeeded: 0
-  FiberNeeded: 0
+  RockNeeded: 1
+  BranchNeeded: 1
+  FiberNeeded: 1
   AmountInStack: 1
   MaxStackSize: 100
   ItemData: {fileID: 11400000, guid: ee39566c44f9d2148a189fb280c7c693, type: 2}
   ItemPrefab: {fileID: 0}
+  bluePrintType: 0
+  IsFavourite: 0
   RequiredIngerdients:
-  - ingerdientType: 2
-    amount: 1
   - ingerdientType: 0
+    amount: 1
+  - ingerdientType: 1
     amount: 1
   - ingerdientType: 2
     amount: 1

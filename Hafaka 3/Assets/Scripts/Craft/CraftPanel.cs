@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class CraftPanel : MonoBehaviour
 {
+    public static CraftPanel Instance { get; private set; }
+
 
     [SerializeField] private TMP_Text _blueprintNameText;
     [SerializeField] private TMP_Text _blueprintText;
@@ -19,22 +21,38 @@ public class CraftPanel : MonoBehaviour
     private BluePrintData _blueprint;
     private CraftingSystem _craftingSystem;
 
-    //public static event Action<CraftingBlueprintUI, BluePrintData, CraftingSystem> OnCraftPanel;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
 
-    public void SetCraftPanel(CraftingBlueprintUI craftingBlueprintUI, BluePrintData bluePrintData, CraftingSystem craftingSystem)
+
+    public void SetCraftPanel(CraftingBlueprintUI craftingBlueprintUI)
     {
         gameObject.SetActive(!gameObject.activeInHierarchy);
+        if (_blueprint != craftingBlueprintUI.Blueprint)
+            gameObject.SetActive(true);
+        
         _craftingBlueprintUI = craftingBlueprintUI;
-        _blueprint = bluePrintData;
-        _craftingSystem = craftingSystem;
+        _blueprint = craftingBlueprintUI.Blueprint;
+        _craftingSystem = craftingBlueprintUI.CraftingSystem;
 
         string requiredItems = "";
-        foreach (var item in bluePrintData.RequiredIngerdients)
+        foreach (var item in craftingBlueprintUI.Blueprint.RequiredIngerdients)
         {
-            requiredItems += $"{item.ingerdientType.ToString()} ----------- {item.amount}\n";
+            requiredItems += $"{item.ingerdientType.ToString()} ----- {item.amount}\n";
         }
 
-        if (bluePrintData.IsFavourite)
+        if (craftingBlueprintUI.Blueprint.IsFavourite)
         {
             _starButton.image.sprite = _fullStar;
         }
@@ -43,7 +61,7 @@ public class CraftPanel : MonoBehaviour
             _starButton.image.sprite = _emptyStar;
         }
 
-        _blueprintNameText.text = $"Name: {bluePrintData.BluePrintName}";
+        _blueprintNameText.text = $"Name: {craftingBlueprintUI.Blueprint.BluePrintName}";
         _blueprintText.text = $"{requiredItems}";
         _craftButton.onClick.AddListener(() => _craftingSystem.CraftBlueprint(_blueprint));
     }
@@ -56,14 +74,17 @@ public class CraftPanel : MonoBehaviour
 
     public void SetFavourite()
     {
-        _blueprint.IsFavourite = !_blueprint.IsFavourite;
+        _craftingBlueprintUI.Blueprint.IsFavourite = !_craftingBlueprintUI.Blueprint.IsFavourite;
         if (_blueprint.IsFavourite)
         {
             _starButton.image.sprite = _fullStar;
+            _craftingBlueprintUI.SetFavourite(true);
         }
         else
         {
             _starButton.image.sprite = _emptyStar;
+            _craftingBlueprintUI.SetFavourite(false);
         }
+        
     }
 }
