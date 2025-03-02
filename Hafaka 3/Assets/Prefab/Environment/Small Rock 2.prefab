@@ -316,7 +316,6 @@ MonoBehaviour:
   _itemData: {fileID: 11400000, guid: b2f705c86d0027f49ac88f84ec3a5671, type: 2}
   m_TextMeshProUGUI: {fileID: 7924301624182507621}
   _amountInStack: 0
-  ingerdientType: 0
 --- !u!65 &5994436939000745946
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -337,7 +336,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.36519077, y: 0.2133085, z: 0.36009222}
-  m_Center: {x: -0.034775022, y: -0.028066376, z: 0.42132756}
+  m_Center: {x: 0, y: -0.028066376, z: 0}
 --- !u!208 &1588112820062737551
 NavMeshObstacle:
   m_ObjectHideFlags: 0
