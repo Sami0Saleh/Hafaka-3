@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   ItemName: Spear
-  ItemSprite: {fileID: 21300000, guid: 0985f7681206e374b8dac32e6c43ada6, type: 3}
+  ItemSprite: {fileID: 21300000, guid: b95ae8c92dd911741acdc39cfa777229, type: 3}
   AmountInStack: 1
   MaxStackSize: 100
   ItemID: 10
   ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
   ingerdientType: 3
+  IsUsable: 0
