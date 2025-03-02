@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private GameObject _inventory;
     [SerializeField] private Slot[] _slots;
+    [SerializeField] private ActionBar _actionBar;
 
     public GameObject GetInventory { get => _inventory; }
 
@@ -132,6 +133,8 @@ public class Inventory : MonoBehaviour
         Debug.Log("Inventory Full! Cannot pick up pickup.");
         return false;
     }
+
+
     private void HandleItemPickup(Pickup pickup)
     {
         // Additional logic if needed when an pickup is picked up
