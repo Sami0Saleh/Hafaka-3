@@ -27,7 +27,8 @@ public enum IngerdientType
     Fiber,
     Spear,
     String,
-    StoneAxe
+    StoneAxe,
+    Fruit
 }
 
 public enum BluePrintType
