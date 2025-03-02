@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
@@ -14,14 +15,19 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     private Transform _originalParent;
     private GameObject _draggedItem;
 
+    public bool isInventoryBarSlot; // Is this slot part of the inventory bar?
+    private ActionBar actionBar;  // Reference to the action bar
+
     public bool HasItem => _item != null;
     public bool IsFull => _item != null && _item.Amount >= _item.Data.MaxStackSize;
     public int RemainingCapacity => _item != null ? _item.Data.MaxStackSize - _item.Amount : 0;
 
     public Item Item { get => _item; set => _item = value; }
+    public Sprite DefaultSprite { get => _defaultSprite; set => _defaultSprite = value; }
 
     private void Start()
     {
+        actionBar = FindObjectOfType<ActionBar>();
         UpdateSlotUI();
     }
 
@@ -68,7 +74,6 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 _amountText.text = string.Empty;
                 slotImage.sprite = _defaultSprite;
             }
-             
         }
         else
         {
@@ -107,7 +112,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         if (_draggedItem != null)
         {
             Destroy(_draggedItem);
-
+            
             // If dropped on an invalid area, return the item to its original slot
             if (eventData.pointerEnter == null || !eventData.pointerEnter.GetComponent<Slot>())
             {
@@ -121,7 +126,30 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         Slot sourceSlot = eventData.pointerDrag?.GetComponent<Slot>();
         if (sourceSlot != null && sourceSlot.HasItem)
         {
-            if (!HasItem)
+            if (HasItem && IsSameItem(sourceSlot._item.Data))
+            {
+                int stackableAmount = Mathf.Min(RemainingCapacity, sourceSlot._item.Amount);
+                AddToStack(stackableAmount);
+                sourceSlot._item.RemoveAmount(stackableAmount);
+            }
+            else if (!HasItem && isInventoryBarSlot)
+            {
+                if (sourceSlot.Item.Data.IsUsable)
+                {
+                    AssignItem(sourceSlot._item.Data, sourceSlot._item.Amount, sourceSlot._item.IngerdientType);
+                    Destroy(sourceSlot._item.gameObject);
+                    actionBar.UpdateSlot(sourceSlot, transform.GetSiblingIndex(), _item);
+                    actionBar.ClearSlot(sourceSlot, sourceSlot.transform.GetSiblingIndex(), sourceSlot._item);
+                    sourceSlot._item = null;
+                    
+
+                }
+                else
+                {
+                    Debug.Log("Item is not usable and cannot be placed in the inventory bar.");
+                }
+            }
+            else if (!HasItem)
             {
                 AssignItem(sourceSlot._item.Data, sourceSlot._item.Amount, sourceSlot._item.IngerdientType);
                 Destroy(sourceSlot._item.gameObject);
@@ -173,5 +201,16 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public bool IsSameItem(string itemName)
     {
         return _item != null && _item.Data.ItemName == itemName;
+    }
+
+    public void ClearSlot()
+    {
+        if (_item != null)
+        {
+            Destroy(_item.gameObject);
+            _item = null;
+            UpdateSlotUI();
+            
+        }
     }
 }

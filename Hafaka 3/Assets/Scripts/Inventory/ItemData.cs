@@ -10,4 +10,5 @@ public class ItemData : ScriptableObject
     public int ItemID;
     public GameObject ItemPrefab;
     public IngerdientType ingerdientType;
+    public bool IsUsable;
 }
