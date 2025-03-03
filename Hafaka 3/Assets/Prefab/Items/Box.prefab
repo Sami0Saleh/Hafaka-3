@@ -687,8 +687,9 @@ MonoBehaviour:
   _boxIcon: {fileID: 1137380999017166517}
   _boxText: {fileID: 1980600557330813713}
   _offset: {x: 0, y: 0, z: 0}
-  ItemData: {fileID: 0}
+  itemData: {fileID: 0}
   AmountInStack: 0
+  ingerdientType: 0
 --- !u!54 &5832920019680872442
 Rigidbody:
   m_ObjectHideFlags: 0
