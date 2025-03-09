@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2008037516824810678}
   - component: {fileID: 2856731575508474126}
   m_Layer: 0
-  m_Name: Cylinder.006
+  m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d2b148ab5a6764048b1dfd67ad738667, type: 2}
   - {fileID: 2100000, guid: 79081d2558794cc48b167abefa127dc7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7015990536479321402}
   - component: {fileID: 4343238735178861535}
   m_Layer: 0
-  m_Name: Cylinder.007
+  m_Name: UpperTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,8 +207,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1943160765003303635}
   - {fileID: 331094149302532779}
+  - {fileID: 1943160765003303635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2703263458922596241

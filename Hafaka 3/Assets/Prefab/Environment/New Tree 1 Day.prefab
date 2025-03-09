@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5087911430626170799}
   - component: {fileID: 7822884418683865216}
   m_Layer: 0
-  m_Name: Cylinder.000
+  m_Name: UpperTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 5326028983921347398}
   - component: {fileID: 2824548471026849240}
   m_Layer: 0
-  m_Name: Cylinder.005
+  m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,7 +226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d2b148ab5a6764048b1dfd67ad738667, type: 2}
   - {fileID: 2100000, guid: 79081d2558794cc48b167abefa127dc7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
