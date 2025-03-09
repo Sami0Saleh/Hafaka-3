@@ -165,12 +165,12 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         if (_item != null)
         {
-            // Find the player's position and forward direction
-            GameObject player = GameObject.FindWithTag("Player"); // Ensure your player GameObject has the "Player" tag
+            // Find the _playerTransform's position and forward direction
+            GameObject player = GameObject.FindWithTag("Player"); // Ensure your _playerTransform GameObject has the "Player" tag
             if (player != null)
             {
                 Transform playerTransform = player.transform;
-                Vector3 dropPosition = playerTransform.position + playerTransform.forward * 1.5f; // Drop 1.5 units in front of the player
+                Vector3 dropPosition = playerTransform.position + playerTransform.forward * 1.5f; // Drop 1.5 units in front of the _playerTransform
                 //dropPosition.y = 0; // Ensure the item is dropped on the ground
 
                 // Instantiate item in the world
@@ -181,7 +181,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                     droppedBox.itemData = _item.Data;
                     droppedBox.AmountInStack = _item.Amount;
                 }
-                Debug.Log($"Dropped {_item.Data.ItemName} in front of the player at {dropPosition}.");
+                Debug.Log($"Dropped {_item.Data.ItemName} in front of the _playerTransform at {dropPosition}.");
 
                 var ingredient = Inventory.Instance.ingerdients.Find(x => x.ingerdientType == _item.IngerdientType);
                 int index = Inventory.Instance.ingerdients.IndexOf(ingredient);

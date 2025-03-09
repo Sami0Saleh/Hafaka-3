@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // If no space is available, notify the player
+        // If no space is available, notify the _playerTransform
         Debug.Log("Inventory Full! Cannot pick up pickup.");
         return false;
     }
@@ -129,7 +129,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // If no space is available, notify the player
+        // If no space is available, notify the _playerTransform
         Debug.Log("Inventory Full! Cannot pick up pickup.");
         return false;
     }

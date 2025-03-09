@@ -50,7 +50,7 @@ public class Pickup : MonoBehaviour, IInteractable
         {
             
             Vector3 dir = m_TextMeshProUGUI.transform.position - player.Eyes.transform.position;
-            // make sure the direction points at the EYES of the player rather then his genitals
+            // make sure the direction points at the EYES of the _playerTransform rather then his genitals
             
             m_TextMeshProUGUI.transform.rotation= Quaternion.LookRotation(dir);
         }
