@@ -5420,8 +5420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b763cc4c6afa49a429ea56e8db46fad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   _agent: {fileID: 707180592}
   _playerTransform: {fileID: 1998187856}
+  _visionRange: 10
+  _visionAngle: 60
   _attackRange: 2
   _attackDelay: 1
   _attackDamage: 1
