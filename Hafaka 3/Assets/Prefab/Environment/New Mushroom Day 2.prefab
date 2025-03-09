@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec718b523bcd8240bbeb31c2e05abd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemData: {fileID: 11400000, guid: 3546e2b563c88c344979da6718012e86, type: 2}
+  _itemData: {fileID: 11400000, guid: 3b37c61e72d0e5541820193a995149af, type: 2}
   m_TextMeshProUGUI: {fileID: 6874696959275318524}
   _amountInStack: 0
 --- !u!1 &7353705415138552866

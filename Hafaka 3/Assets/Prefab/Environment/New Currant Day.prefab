@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec718b523bcd8240bbeb31c2e05abd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemData: {fileID: 11400000, guid: 53fa677973332a4418186a7c0e0cb431, type: 2}
+  _itemData: {fileID: 11400000, guid: 7c438bf7b473452438f014f3fb5dbe9f, type: 2}
   m_TextMeshProUGUI: {fileID: 5204045162097822172}
   _amountInStack: 0
 --- !u!4 &7591394180361105862 stripped

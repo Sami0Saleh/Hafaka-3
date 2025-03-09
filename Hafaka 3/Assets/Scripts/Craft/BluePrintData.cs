@@ -34,7 +34,8 @@ public enum IngerdientType
     Fruit,
     Mushroom1,
     Mushroom2,
-    Mushroom3
+    Mushroom3,
+    Fish
 }
 
 public enum BluePrintType
