@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "PlayerNewInput",
     "maps": [
         {
             "name": "Player",
@@ -52,7 +52,7 @@
                 },
                 {
                     "name": "Interact",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "3821f4e2-822a-4f8d-b437-5a35f9869a90",
                     "expectedControlType": "",
                     "processors": "",
@@ -61,9 +61,9 @@
                 },
                 {
                     "name": "Attack",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "7a2899c6-f807-4440-ad09-bc0f9063f0f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -455,6 +455,54 @@
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "Switch Tools",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "1b678a63-d8ee-487a-87fa-fa163d106969",
+            "actions": [
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "61dbc96b-4087-4450-a477-f84536bae662",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "e656d2ec-5b15-4459-95cd-927d0fb686ec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c3708db7-cb55-45c4-b1ed-735cacac6d46",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "101d7585-74fb-4066-a5f6-22740913bfe4",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

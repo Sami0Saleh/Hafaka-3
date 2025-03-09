@@ -12,7 +12,7 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
-		[Header("Player")]
+        /*[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
@@ -347,6 +347,6 @@ namespace StarterAssets
 		{
 			yield return new WaitForSeconds(2f);
 			hasAttacked = false;
-		}
-	}
+		}*/
+    }
 }

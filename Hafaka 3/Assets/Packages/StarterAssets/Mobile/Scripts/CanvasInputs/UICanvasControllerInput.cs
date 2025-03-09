@@ -5,7 +5,7 @@ namespace StarterAssets
     public class UICanvasControllerInput : MonoBehaviour
     {
 
-        [Header("Output")]
+        /*[Header("Output")]
         public StarterAssetsInputs starterAssetsInputs;
 
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
@@ -46,7 +46,7 @@ namespace StarterAssets
         public void VirtualAttackInput(bool virtualAttackState)
         {
             starterAssetsInputs.AttackInput(virtualAttackState);
-        }
+        }*/
     }
 
 }

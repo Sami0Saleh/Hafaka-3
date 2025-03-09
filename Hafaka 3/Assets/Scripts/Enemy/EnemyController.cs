@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
 
     // Components
     [SerializeField] private NavMeshAgent _agent;
-    //[SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator;
     [SerializeField] private Transform _playerTransform;
     //private EnemyHealthBar _enemyHealthBar;
 
@@ -30,11 +30,12 @@ public class EnemyController : MonoBehaviour
 
     [Header("Health Settings")]
     [SerializeField] private int _maxHealth = 100;
-    private int _currentHealth;
+    [SerializeField] private int _currentHealth;
 
     // State Flags
     private bool _isDead = false;
-    
+    private float lastHitTime = 0;
+    private float hitCooldown = 1f;
 
     public bool IsDead { get => _isDead; protected set => _isDead = value; }
 
@@ -76,8 +77,8 @@ public class EnemyController : MonoBehaviour
         _agent.isStopped = false;
         _agent.SetDestination(_patrolPoints[_currentPatrolIndex].position);
         float distance = Vector3.Distance(transform.position, _patrolPoints[_currentPatrolIndex].position);
-        //_animator.SetBool("IsAttacking", false);
-        //_animator.SetBool("IsWalking", true);
+        _animator.SetBool("IsAttacking", false);
+        _animator.SetBool("IsWalking", true);
         if (distance < 0.5f)
         {
             _currentPatrolIndex = _currentPatrolIndex + 1;
@@ -97,18 +98,17 @@ public class EnemyController : MonoBehaviour
     {
         _agent.isStopped = false;
         _agent.SetDestination(_playerTransform.position);
-        //_animator.SetBool("IsHit", false);
-        //_animator.SetBool("IsAttacking", false);
-        //_animator.SetBool("IsWalking", true);
+        _animator.SetBool("IsAttacking", false);
+        _animator.SetBool("IsWalking", true);
         if (Vector3.Distance(transform.position, _playerTransform.position) <= _attackRange)
         {
             ChangeState(EnemyState.Attack);
-            //_animator.SetBool("IsWalking", false);
+            _animator.SetBool("IsWalking", false);
         }
         else if (!CanSeePlayer())
         {
             ChangeState(EnemyState.Patrol);
-            //_animator.SetBool("IsWalking", true);
+            _animator.SetBool("IsWalking", true);
         }
     }
         
@@ -117,8 +117,8 @@ public class EnemyController : MonoBehaviour
         _agent.isStopped = true;
         if (Vector3.Distance(transform.position, _playerTransform.position) <= _attackRange)
         {
-            //_animator.SetBool("IsAttacking", true);
-            //_attackVFX.Play();
+            _animator.SetBool("IsAttacking", true);
+
             // Deal damage to the player here
             Debug.Log("Melee attack hit the player!");
         }
@@ -132,8 +132,7 @@ public class EnemyController : MonoBehaviour
 
     private void ReceiveHit()
     {
-        //_animator.SetBool("IsWalking", false);
-        //_animator.SetBool("IsHit", true);
+        _animator.SetBool("IsWalking", false);
         if (_currentHealth <= 0)
         {
             ChangeState(EnemyState.Death);
@@ -147,9 +146,7 @@ public class EnemyController : MonoBehaviour
     private void Death()
     {
         _agent.isStopped = true;
-        //_animator.SetBool("IsWalking", false);
-        //_animator.SetBool("IsHit", false);
-        //_animator.SetBool("IsDead", true);
+        _animator.SetBool("IsWalking", false);
         _isDead = true;
         SpawnOnDeath();
     }
@@ -158,6 +155,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int amount)
     {
         if (_isDead) return;
+
         _currentHealth -= amount;
         //enemyHealthBar.UpdateHealthBar(_currentHealth, _maxHealth);
 
@@ -192,10 +190,16 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player MultiTool"))
+        // Ignore hits that occur too close to the last hit
+        if (Time.time - lastHitTime < hitCooldown)
+            return;
+
+        if (other.CompareTag("MultiTool"))
         {
-            //TakeDamage
+            TakeDamage(PlayerController.Instance.AttackDamage);
         }
+
+        lastHitTime = Time.time;
     }
 
     private void OnDrawGizmosSelected()
@@ -226,56 +230,3 @@ public class EnemyController : MonoBehaviour
     }
 
 }
-/*[SerializeField] PlayerHealth playerHealth;
-[SerializeField] NavMeshAgent navMeshAgent;
-EnemyState enemyState;
-
-float speed = 15f;
-
-float ChaseDistance = 15f;
-float AttackDistance = 5f;
-
-private void Awake()
-{
-    playerHealth = FindAnyObjectByType<PlayerHealth>();
-    navMeshAgent = GetComponent<NavMeshAgent>();
-    enemyState = EnemyState.Idle;
-}
-// Start is called once before the first execution of Update after the MonoBehaviour is created
-void Start()
-{
-
-}
-
-// Update is called once per frame
-void Update()
-{
-    StateChange();
-}
-private void StateChange()
-{
-    float distance = Vector3.Distance(playerHealth.transform.position, this.transform.position);
-    if (distance <= ChaseDistance&&enemyState != EnemyState.Chase)
-    {
-        enemyState = EnemyState.Chase;
-        navMeshAgent.SetDestination(playerHealth.transform.position);
-        navMeshAgent.speed = speed;
-    }
-    else if (distance <= AttackDistance && enemyState != EnemyState.Attack)
-    {
-        enemyState = EnemyState.Attack;
-        //Attack
-    }
-    else
-    {
-        enemyState = EnemyState.Idle;
-    }
-}
-}
-public enum EnemyState
-{
-Idle,
-Chase,
-Attack,
-Wandering
-}*/

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - CinemachineTarget
   - Enemy
+  - MultiTool
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Monster
