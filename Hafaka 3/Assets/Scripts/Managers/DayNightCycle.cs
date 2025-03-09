@@ -29,6 +29,12 @@ public class DayNightCycle : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        OnDayStart?.Invoke();
+    }
+
     private void Update()
     {
         timeCounter += Time.deltaTime;

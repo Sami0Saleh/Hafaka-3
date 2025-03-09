@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _playerTransform;
+    [SerializeField] private GameObject _enemy;
     //private EnemyHealthBar _enemyHealthBar;
 
     // Configurable Parameters
@@ -38,10 +39,22 @@ public class EnemyController : MonoBehaviour
     private float hitCooldown = 1f;
 
     public bool IsDead { get => _isDead; protected set => _isDead = value; }
-
+    
     private void Start()
     {
+        DayNightCycle.instance.OnDayStart += On_DayChange;
+        DayNightCycle.instance.OnNightStart += On_NightChange;
+
         _currentHealth = _maxHealth;
+    }
+
+    void On_DayChange()
+    {
+        _enemy.SetActive(false);
+    }
+    void On_NightChange()
+    {
+       _enemy.SetActive(true);
     }
 
     // State Machine

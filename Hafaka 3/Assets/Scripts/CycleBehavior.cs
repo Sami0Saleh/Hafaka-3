@@ -32,10 +32,4 @@ public class CycleBehavior : MonoBehaviour
         }
         meshRenderer.material = NightMat;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
