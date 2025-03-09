@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a650dbb0c2396c468b23ba9880fed75, type: 3}
-  m_Name: Fruit
+  m_Name: Pumpkin
   m_EditorClassIdentifier: 
-  ItemName: Fruit
-  ItemSprite: {fileID: 21300000, guid: 954eaafea5a3e0443b226b5b1ab6ea4b, type: 3}
+  ItemName: Pumpkin
+  ItemSprite: {fileID: 21300000, guid: 20da1bb74cb72cf47b9536cc640306a0, type: 3}
   AmountInStack: 1
-  MaxStackSize: 100
-  ItemID: 5
+  MaxStackSize: 10
+  ItemID: 9
   ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
-  ingerdientType: 6
+  ingerdientType: 8
   IsUsable: 1

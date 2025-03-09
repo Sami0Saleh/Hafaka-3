@@ -15,7 +15,8 @@ MonoBehaviour:
   ItemName: 
   ItemSprite: {fileID: 0}
   AmountInStack: 1
-  MaxStackSize: 100
+  MaxStackSize: 10
   ItemID: 0
   ItemPrefab: {fileID: 0}
   ingerdientType: 0
+  IsUsable: 0
