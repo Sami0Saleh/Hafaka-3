@@ -27,8 +27,15 @@ public enum IngerdientType
     Fiber,
     Spear,
     String,
-    StoneAxe,
-    Fruit
+    PickAxe,
+    Knife,
+    Berry,
+    Pumpkin,
+    Fruit,
+    Mushroom1,
+    Mushroom2,
+    Mushroom3,
+    Fish
 }
 
 public enum BluePrintType

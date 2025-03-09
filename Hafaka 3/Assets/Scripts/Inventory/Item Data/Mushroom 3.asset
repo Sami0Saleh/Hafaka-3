@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a650dbb0c2396c468b23ba9880fed75, type: 3}
-  m_Name: Spear
+  m_Name: Mushroom 3
   m_EditorClassIdentifier: 
-  ItemName: Spear
-  ItemSprite: {fileID: 21300000, guid: b95ae8c92dd911741acdc39cfa777229, type: 3}
+  ItemName: Mushroom 3
+  ItemSprite: {fileID: 21300000, guid: 6af46061201f661418afe356ac86016a, type: 3}
   AmountInStack: 1
   MaxStackSize: 10
-  ItemID: 10
+  ItemID: 8
   ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
-  ingerdientType: 3
-  IsUsable: 0
+  ingerdientType: 12
+  IsUsable: 1

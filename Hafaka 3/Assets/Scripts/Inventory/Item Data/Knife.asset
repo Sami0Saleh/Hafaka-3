@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a650dbb0c2396c468b23ba9880fed75, type: 3}
-  m_Name: StoneAxe
+  m_Name: Knife
   m_EditorClassIdentifier: 
-  ItemName: StoneAxe
-  ItemSprite: {fileID: 21300000, guid: 420ab6e684f3aa44dbb68db31e307dce, type: 3}
+  ItemName: Knife
+  ItemSprite: {fileID: 21300000, guid: 840fadf1abd09b44e9089221c5d389a0, type: 3}
   AmountInStack: 1
-  MaxStackSize: 100
-  ItemID: 11
+  MaxStackSize: 10
+  ItemID: 12
   ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
-  ingerdientType: 5
+  ingerdientType: 6
+  IsUsable: 0
