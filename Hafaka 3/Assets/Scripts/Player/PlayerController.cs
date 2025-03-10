@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if (GameManager.instance.IsPaused)
+        if (GameManager.Instance.IsPaused)
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
     private void Pause()
     {
-        if (GameManager.instance.IsPaused)
+        if (GameManager.Instance.IsPaused)
         {
             _input.Player.Disable();
             _input.UI.Escape.Enable();
@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
 
     private void CameraRotation()
     {
-        if (GameManager.instance.IsPaused)
+        if (GameManager.Instance.IsPaused)
             return;
 
         // if there is an input
@@ -437,7 +437,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _playerHealth.ResetHealth();
-    }   
+    } 
 }
 
 

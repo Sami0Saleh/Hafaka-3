@@ -15,7 +15,7 @@ public class CycleBehavior : MonoBehaviour
     {
         if (DayNightCycle.instance == null)
         {
-            Debug.LogError("DayNightCycle instance is missing!");
+            Debug.LogError("DayNightCycle Instance is missing!");
             return;
         }
         

@@ -5,7 +5,7 @@ using UnityEngine.Windows;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
     public float GetTime { get { return time; } set { time = value; } }
     [SerializeField]float time;
 
@@ -17,15 +17,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null)
         {
-            instance = this;
-
+            Destroy(this);
+            return;
         }
-        else
-        {
-            Destroy(instance.gameObject);
-        }
+        Instance = this;
 
         _input = new PlayerNewInput();
         Time.timeScale = 1;

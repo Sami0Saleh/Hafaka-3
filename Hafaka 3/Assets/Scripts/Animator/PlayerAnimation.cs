@@ -33,7 +33,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Pause()
     {
-        if (GameManager.instance.IsPaused)
+        if (GameManager.Instance.IsPaused)
         {
             _input.Player.Disable();
             _input.UI.Escape.Enable();

@@ -15,7 +15,7 @@ public class Pickup : MonoBehaviour, IInteractable
 
     private bool isPlayerNearby;
 
-    // Local stack amount for this instance of the item
+    // Local stack amount for this Instance of the item
     [SerializeField] private int _amountInStack;
 
     private IngerdientType ingerdientType;

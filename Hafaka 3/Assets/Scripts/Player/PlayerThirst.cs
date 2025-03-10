@@ -20,10 +20,10 @@ public class PlayerThirst : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (GameManager.instance.GetTime - lastDrainTime >= 90f)
+        if (GameManager.Instance.GetTime - lastDrainTime >= 90f)
         {
             DrainThirst();
-            lastDrainTime = GameManager.instance.GetTime;
+            lastDrainTime = GameManager.Instance.GetTime;
         }
     }
     public void DrainThirst()
