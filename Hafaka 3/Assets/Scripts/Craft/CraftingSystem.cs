@@ -24,6 +24,7 @@ public class CraftingSystem : MonoBehaviour
     private void Start()
     {
         InitializeCraftingUI();
+        _craft.SetActive(false);
     }
 
     public void SetCraft()

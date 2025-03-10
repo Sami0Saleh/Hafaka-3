@@ -38,7 +38,10 @@ public class Inventory : MonoBehaviour
         BoxPickup.OnBoxPickup -= HandleBoxPickup;
     }
 
-
+    private void Start()
+    {
+        _inventory.SetActive(false);
+    }
     public void SetInventory()
     {
         _inventory.SetActive(!_inventory.activeInHierarchy);
