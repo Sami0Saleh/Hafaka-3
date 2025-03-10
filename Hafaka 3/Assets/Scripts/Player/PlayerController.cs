@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        _input.Player.Enable();
+        _input.Enable();
         _input.Player.Move.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
         _input.Player.Move.canceled += ctx => MoveInput = Vector2.zero;
         _input.Player.Look.performed += ctx => MouseInput = ctx.ReadValue<Vector2>();
@@ -132,6 +132,9 @@ public class PlayerController : MonoBehaviour
         _input.Player.Attack.started += _ => Attack();
         _input.Player.Inventory.started += _ => Inventory();
         _input.Player.Interact.started += _ => Interact();
+        _input.Player.Escape.started += _ => Pause();
+        _input.UI.Escape.performed += _ => Pause();
+        _input.UI.Escape.Disable();
     }
    
 
@@ -184,10 +187,31 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
+        if (GameManager.instance.IsPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         CameraRotation();
     }
 
-
+    private void Pause()
+    {
+        if (GameManager.instance.IsPaused)
+        {
+            _input.Player.Disable();
+            _input.UI.Escape.Enable();
+        }
+        else
+        {
+            _input.Player.Enable();
+            _input.UI.Escape.Disable();
+        }
+    }
 
     private void GroundedCheck()
     {
@@ -198,6 +222,9 @@ public class PlayerController : MonoBehaviour
 
     private void CameraRotation()
     {
+        if (GameManager.instance.IsPaused)
+            return;
+
         // if there is an input
         if (MouseInput.sqrMagnitude >= _threshold)
         {
@@ -388,7 +415,7 @@ public class PlayerController : MonoBehaviour
             if (Time.time - lastHitTime < hitCooldown)
                 return;
 
-            _playerHealth.TakeDamage(50);
+            _playerHealth.TakeDamage(10);
 
             lastHitTime = Time.time;
         }

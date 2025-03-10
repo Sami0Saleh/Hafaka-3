@@ -17,6 +17,6 @@ MonoBehaviour:
   AmountInStack: 1
   MaxStackSize: 10
   ItemID: 11
-  ItemPrefab: {fileID: 3803814937486173774, guid: c2394b323d64e2e48b44ee6158487db8, type: 3}
+  ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
   ingerdientType: 5
-  IsUsable: 0
+  IsUsable: 1

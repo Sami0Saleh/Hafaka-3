@@ -19,6 +19,10 @@ public class PlayerAnimation : MonoBehaviour
         _input.Player.Attack.started += _ => AttackAnim();
         _input.Player.Move.performed += _ => StartWalking();
         _input.Player.Move.canceled += _ => StopWalking();
+
+        _input.Player.Escape.started += _ => Pause();
+        _input.UI.Escape.performed += _ => Pause();
+        _input.UI.Escape.Disable();
     }
 
 
@@ -26,7 +30,21 @@ public class PlayerAnimation : MonoBehaviour
     {
         _input.Disable();
     }
-    
+
+    private void Pause()
+    {
+        if (GameManager.instance.IsPaused)
+        {
+            _input.Player.Disable();
+            _input.UI.Escape.Enable();
+        }
+        else
+        {
+            _input.Player.Enable();
+            _input.UI.Escape.Disable();
+        }
+    }
+
     private void StartWalking()
     {
         _animator.SetBool("isWalking", true);
