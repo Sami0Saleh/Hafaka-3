@@ -1,7 +1,5 @@
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
 
 public class GameManager : MonoBehaviour
 {
