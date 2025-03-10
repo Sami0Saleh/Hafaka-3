@@ -59,5 +59,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb65c8bf62e05d34498a76889237a58e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6959388075406527650}
   m_SourcePrefab: {fileID: 100100000, guid: cb65c8bf62e05d34498a76889237a58e, type: 3}
+--- !u!1 &293992132182061905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cb65c8bf62e05d34498a76889237a58e, type: 3}
+  m_PrefabInstance: {fileID: 636434269986983424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6959388075406527650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293992132182061905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 45ba7f01448f845458ca2aa7e729e6d8, type: 2}
+  NightMat: {fileID: 2100000, guid: dadddf09ecd76314f9c91c91ca136c30, type: 2}

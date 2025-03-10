@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 3810036816696791511}
   - component: {fileID: 2727832676112660798}
   - component: {fileID: 662984234607594942}
+  - component: {fileID: 1021645256134635347}
   m_Layer: 0
   m_Name: Mush 2 Night 3
   m_TagString: Untagged
@@ -262,6 +263,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1021645256134635347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741682447087815129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 76a99b9bd1b9c7e4fbe81538ad5c6f6c, type: 2}
+  NightMat: {fileID: 2100000, guid: fbde5fc5371a66848a8f2a53dd0e308f, type: 2}
 --- !u!1 &4981001252627423675
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +362,7 @@ GameObject:
   - component: {fileID: 1081871262294431009}
   - component: {fileID: 2600692879523214286}
   - component: {fileID: 463650581282947086}
+  - component: {fileID: 1395023161866462041}
   m_Layer: 0
   m_Name: Mush 2 Night 1
   m_TagString: Untagged
@@ -422,6 +438,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1395023161866462041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5869751138213235634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 76a99b9bd1b9c7e4fbe81538ad5c6f6c, type: 2}
+  NightMat: {fileID: 2100000, guid: fbde5fc5371a66848a8f2a53dd0e308f, type: 2}
 --- !u!1 &6731351402625161231
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +463,7 @@ GameObject:
   - component: {fileID: 4927450393506675956}
   - component: {fileID: 4085586581164085472}
   - component: {fileID: 3411564303018079211}
+  - component: {fileID: 1787062704373275201}
   m_Layer: 0
   m_Name: Mush 2 Night 2
   m_TagString: Untagged
@@ -508,6 +539,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1787062704373275201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731351402625161231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 76a99b9bd1b9c7e4fbe81538ad5c6f6c, type: 2}
+  NightMat: {fileID: 2100000, guid: fbde5fc5371a66848a8f2a53dd0e308f, type: 2}
 --- !u!1 &8031575449701469064
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +564,7 @@ GameObject:
   - component: {fileID: 1166460050084242233}
   - component: {fileID: 97864496148896917}
   - component: {fileID: 3601411245429970975}
+  - component: {fileID: 3161961106315463022}
   m_Layer: 0
   m_Name: Mush 2 Night 4
   m_TagString: Untagged
@@ -594,3 +640,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3161961106315463022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8031575449701469064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 76a99b9bd1b9c7e4fbe81538ad5c6f6c, type: 2}
+  NightMat: {fileID: 2100000, guid: fbde5fc5371a66848a8f2a53dd0e308f, type: 2}

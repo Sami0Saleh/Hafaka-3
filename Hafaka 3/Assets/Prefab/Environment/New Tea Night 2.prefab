@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 8547468901108491362}
   - component: {fileID: 1434485742886378708}
   - component: {fileID: 6316905578081710212}
+  - component: {fileID: 8189717781035478892}
   m_Layer: 0
   m_Name: Tiny Fruit
   m_TagString: Untagged
@@ -262,6 +263,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8189717781035478892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169534887315395133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: ac3045305ad257240a1044296abaa5e3, type: 2}
+  NightMat: {fileID: 2100000, guid: b4764de1e6da9854bbdf6fcbb6f6f4c9, type: 2}
 --- !u!1 &6877293492859184159
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +288,7 @@ GameObject:
   - component: {fileID: 497261706814100374}
   - component: {fileID: 1461128857271991487}
   - component: {fileID: 9193725341191799739}
+  - component: {fileID: 198208708444622440}
   m_Layer: 0
   m_Name: New Tea Night 2
   m_TagString: Untagged
@@ -349,6 +365,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &198208708444622440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6877293492859184159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: ac3045305ad257240a1044296abaa5e3, type: 2}
+  NightMat: {fileID: 2100000, guid: b4764de1e6da9854bbdf6fcbb6f6f4c9, type: 2}
 --- !u!1 &7465915470879030232
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +462,7 @@ GameObject:
   - component: {fileID: 8078718776590314299}
   - component: {fileID: 2547863717606351473}
   - component: {fileID: 5400015666536474549}
+  - component: {fileID: 499014895568621563}
   m_Layer: 0
   m_Name: Tiny Fruit
   m_TagString: Untagged
@@ -507,3 +538,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &499014895568621563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8362661333613722117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: ac3045305ad257240a1044296abaa5e3, type: 2}
+  NightMat: {fileID: 2100000, guid: b4764de1e6da9854bbdf6fcbb6f6f4c9, type: 2}

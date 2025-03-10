@@ -252,12 +252,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6261928997328167373}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4953318124985165038, guid: b13b2c0167fa4014cb21ad8b10398d3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5656993583837355470}
     - targetCorrespondingSourceObject: {fileID: -1018664272722485354, guid: b13b2c0167fa4014cb21ad8b10398d3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5486533344308195625}
     - targetCorrespondingSourceObject: {fileID: -1018664272722485354, guid: b13b2c0167fa4014cb21ad8b10398d3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3613267790281793703}
+    - targetCorrespondingSourceObject: {fileID: -1018664272722485354, guid: b13b2c0167fa4014cb21ad8b10398d3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 173949755918990190}
   m_SourcePrefab: {fileID: 100100000, guid: b13b2c0167fa4014cb21ad8b10398d3f, type: 3}
 --- !u!4 &271517956403449727 stripped
 Transform:
@@ -305,3 +311,36 @@ MonoBehaviour:
   _itemData: {fileID: 11400000, guid: 43e9393ef34ebed489313b8624d032ab, type: 2}
   m_TextMeshProUGUI: {fileID: 5191513716040945213}
   _amountInStack: 0
+--- !u!114 &173949755918990190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419788255845697039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: a1b2e02465ab41045a35473000d5b93c, type: 2}
+  NightMat: {fileID: 2100000, guid: 96d0d95d45eb8ae4d99f184d5af95c1f, type: 2}
+--- !u!1 &3508904010273815927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4953318124985165038, guid: b13b2c0167fa4014cb21ad8b10398d3f, type: 3}
+  m_PrefabInstance: {fileID: 8363071311889488281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5656993583837355470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508904010273815927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 3a2f37cef02a8ee4a9069afaf6c1d215, type: 2}
+  NightMat: {fileID: 2100000, guid: f071f5073a9d9684c87e0e7a37a4a9ff, type: 2}

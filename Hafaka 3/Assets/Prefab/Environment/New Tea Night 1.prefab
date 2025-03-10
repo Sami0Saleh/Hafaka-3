@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5127279300332273123}
   - component: {fileID: 5132724279636362648}
   - component: {fileID: 4641987381356224678}
+  - component: {fileID: 4535378394280269615}
   m_Layer: 0
   m_Name: Tiny Fruit
   m_TagString: Untagged
@@ -124,6 +125,20 @@ MonoBehaviour:
   _itemData: {fileID: 11400000, guid: 3546e2b563c88c344979da6718012e86, type: 2}
   m_TextMeshProUGUI: {fileID: 6482103499804793485}
   _amountInStack: 0
+--- !u!114 &4535378394280269615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3593196746065469428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: ac3045305ad257240a1044296abaa5e3, type: 2}
+  NightMat: {fileID: 2100000, guid: b4764de1e6da9854bbdf6fcbb6f6f4c9, type: 2}
 --- !u!1 &4969103142838973686
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +150,7 @@ GameObject:
   - component: {fileID: 30501243821401645}
   - component: {fileID: 5896944364561416047}
   - component: {fileID: 2271984606571292645}
+  - component: {fileID: -6537764568173043603}
   m_Layer: 0
   m_Name: New Tea Night 1
   m_TagString: Untagged
@@ -212,6 +228,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6537764568173043603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969103142838973686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: ac3045305ad257240a1044296abaa5e3, type: 2}
+  NightMat: {fileID: 2100000, guid: b4764de1e6da9854bbdf6fcbb6f6f4c9, type: 2}
 --- !u!1 &5367689102037291870
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     private void Start()
     {
-        actionBar = FindObjectOfType<ActionBar>();
+        actionBar = FindFirstObjectByType<ActionBar>();
         UpdateSlotUI();
     }
 

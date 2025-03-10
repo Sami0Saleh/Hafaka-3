@@ -13,23 +13,39 @@ public class CycleBehavior : MonoBehaviour
     }
     void Start()
     {
+        if (DayNightCycle.instance == null)
+        {
+            Debug.LogError("DayNightCycle instance is missing!");
+            return;
+        }
+        
         DayNightCycle.instance.OnDayStart += On_DayChange;
         DayNightCycle.instance.OnNightStart += On_NightChange;
     }
+    
+    private void OnDestroy()
+    {
+        if (DayNightCycle.instance != null)
+        {
+            DayNightCycle.instance.OnDayStart -= On_DayChange;
+            DayNightCycle.instance.OnNightStart -= On_NightChange;
+        }
+    }
+    
     void On_DayChange()
     {
-        if (DayMat == null)
+        if (DayMat != null)
         {
-            return;
+            meshRenderer.material = new Material(DayMat);
+            // Debug.Log($"{gameObject.name} switched to Day Material.");
         }
-        meshRenderer.material = DayMat;
     }
     void On_NightChange()
     {
-        if (NightMat == null)
+        if (NightMat != null)
         {
-            return;
+            meshRenderer.material = new Material(NightMat);
+            // Debug.Log($"{gameObject.name} switched to Night Material.");
         }
-        meshRenderer.material = NightMat;
     }
 }

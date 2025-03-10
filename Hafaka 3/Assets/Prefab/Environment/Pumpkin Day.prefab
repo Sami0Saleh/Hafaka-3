@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 141012248839602103}
   - component: {fileID: 5813894427191806184}
   - component: {fileID: 6883408809508662519}
+  - component: {fileID: 4834451478328037530}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -335,6 +336,20 @@ MonoBehaviour:
   _itemData: {fileID: 11400000, guid: 43e9393ef34ebed489313b8624d032ab, type: 2}
   m_TextMeshProUGUI: {fileID: 7192072990028823667}
   _amountInStack: 0
+--- !u!114 &4834451478328037530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264464064018263414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: a1b2e02465ab41045a35473000d5b93c, type: 2}
+  NightMat: {fileID: 2100000, guid: 96d0d95d45eb8ae4d99f184d5af95c1f, type: 2}
 --- !u!1 &8655543431891079066
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +361,7 @@ GameObject:
   - component: {fileID: 5810467446734705622}
   - component: {fileID: 23363568770168581}
   - component: {fileID: 483242286940858415}
+  - component: {fileID: 8401255409014303933}
   m_Layer: 0
   m_Name: Pumpkin
   m_TagString: Untagged
@@ -421,3 +437,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8401255409014303933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655543431891079066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 3a2f37cef02a8ee4a9069afaf6c1d215, type: 2}
+  NightMat: {fileID: 2100000, guid: f071f5073a9d9684c87e0e7a37a4a9ff, type: 2}

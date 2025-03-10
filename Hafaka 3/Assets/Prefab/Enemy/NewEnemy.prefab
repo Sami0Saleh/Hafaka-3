@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 3293279103712224824}
   m_Layer: 0
   m_Name: NewEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 188058655708357034, guid: c0eade87a8ada954ca52843b7d791490, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1903635b7ab205c4c851610fa1d13a1a, type: 2}
     - target: {fileID: 919132149155446097, guid: c0eade87a8ada954ca52843b7d791490, type: 3}
       propertyPath: m_Name
       value: Enemy Rig
@@ -338,6 +342,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: bba27d9345383fd478d28aa0303b9dd2, type: 2}
+    - target: {fileID: 7205140776170859923, guid: c0eade87a8ada954ca52843b7d791490, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a7d2446e39098df46b5fe73dba55771c, type: 2}
+    - target: {fileID: 8626154274752587844, guid: c0eade87a8ada954ca52843b7d791490, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a7d2446e39098df46b5fe73dba55771c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -378,8 +390,9 @@ MonoBehaviour:
   _agent: {fileID: 2734378732238437278}
   _animator: {fileID: 1881156387908375325}
   _playerTransform: {fileID: 0}
-  _visionRange: 10
-  _visionAngle: 60
+  _enemy: {fileID: 8453437975561216913}
+  _visionRange: 30
+  _visionAngle: 135
   _attackRange: 2
   _attackDelay: 1
   _attackDamage: 1

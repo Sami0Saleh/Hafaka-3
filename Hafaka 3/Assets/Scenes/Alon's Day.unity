@@ -11221,6 +11221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionalLight: {fileID: 1136129999}
   fogEffect: {fileID: 0}
+  DaySkybox: {fileID: 2100000, guid: ef89d99209837be4d8375f9a8c0ac793, type: 2}
+  NightSkybox: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
   dayDuration: 180
 --- !u!1001 &914441115
 PrefabInstance:

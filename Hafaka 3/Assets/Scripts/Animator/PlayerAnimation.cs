@@ -17,12 +17,24 @@ public class PlayerAnimation : MonoBehaviour
     {
         _input.Player.Enable();
         _input.Player.Attack.started += _ => AttackAnim();
+        _input.Player.Move.performed += _ => StartWalking();
+        _input.Player.Move.canceled += _ => StopWalking();
     }
 
 
     private void OnDisable()
     {
         _input.Disable();
+    }
+    
+    private void StartWalking()
+    {
+        _animator.SetBool("isWalking", true);
+    }
+    
+    private void StopWalking()
+    {
+        _animator.SetBool("isWalking", false);
     }
 
     private void AttackAnim()

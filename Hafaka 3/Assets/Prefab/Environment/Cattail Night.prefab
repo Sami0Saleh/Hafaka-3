@@ -245,6 +245,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 043256e3caf785e4e8a03744d9730da3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6390604784592817116}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 043256e3caf785e4e8a03744d9730da3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9078443627766587736}
   m_SourcePrefab: {fileID: 100100000, guid: 043256e3caf785e4e8a03744d9730da3, type: 3}
 --- !u!4 &1256453342408853476 stripped
 Transform:
@@ -292,4 +295,17 @@ MonoBehaviour:
   _itemData: {fileID: 11400000, guid: 53fa677973332a4418186a7c0e0cb431, type: 2}
   m_TextMeshProUGUI: {fileID: 86205011105622068}
   _amountInStack: 0
-  ingerdientType: 2
+--- !u!114 &9078443627766587736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883631664959167838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c076ac30bb7648bbee93ed1af2de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayMat: {fileID: 2100000, guid: 9732070694d3dd7469c508ceba0a7db0, type: 2}
+  NightMat: {fileID: 2100000, guid: 50e71db7b329c72449223a88da63b928, type: 2}
