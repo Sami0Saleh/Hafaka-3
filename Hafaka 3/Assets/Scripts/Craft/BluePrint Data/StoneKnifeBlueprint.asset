@@ -12,17 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d124d655e5860d459417d46d58678ba, type: 3}
   m_Name: StoneKnifeBlueprint
   m_EditorClassIdentifier: 
-  BluePrintName: 
-  BluePrintSprite: {fileID: 0}
-  RockNeeded: 0
-  BranchNeeded: 0
-  FiberNeeded: 0
+  BluePrintName: Knife
+  BluePrintSprite: {fileID: 21300000, guid: 9b86f2f7b6f7e8542bc4998af9248bd9, type: 3}
+  RockNeeded: 6
+  BranchNeeded: 6
+  FiberNeeded: 6
   AmountInStack: 1
-  MaxStackSize: 100
-  ItemData: {fileID: 0}
-  ItemPrefab: {fileID: 0}
+  MaxStackSize: 1
+  ItemData: {fileID: 11400000, guid: fcf7ba81a5631a949b6155ed85d2563a, type: 2}
+  ItemPrefab: {fileID: 5986310132826758228, guid: 522d5c5757116ef4c8bbec09971689e2, type: 3}
+  bluePrintType: 0
+  IsFavourite: 0
   RequiredIngerdients:
   - ingerdientType: 0
-    amount: 1
+    amount: 6
   - ingerdientType: 1
-    amount: 1
+    amount: 6
+  - ingerdientType: 2
+    amount: 6

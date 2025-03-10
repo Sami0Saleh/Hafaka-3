@@ -18,10 +18,11 @@ MonoBehaviour:
   BranchNeeded: 0
   FiberNeeded: 0
   AmountInStack: 1
-  MaxStackSize: 100
+  MaxStackSize: 1
   ItemData: {fileID: 0}
   ItemPrefab: {fileID: 0}
   bluePrintType: 1
+  IsFavourite: 0
   RequiredIngerdients:
   - ingerdientType: 4
     amount: 2
