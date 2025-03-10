@@ -7,14 +7,14 @@ public class UnitHealth : MonoBehaviour,IDamageable
     public virtual float MaxHealth { get; protected set; }
     public bool IsAlive { get; protected set; }
 
-    public  event Action<float> OnHit;
-    public  event Action OnDeath;
+    public event Action<float> OnHit;
+    public event Action OnDeath;
     public virtual void TakeDamage(float damage)
     {
         Health-=damage;
         IsAlive = CheckIfDead();
         if (!IsAlive) Death(); 
-        OnHit.Invoke(damage);
+        //OnHit.Invoke(damage);
         
     }
 
@@ -34,6 +34,13 @@ public class UnitHealth : MonoBehaviour,IDamageable
         Debug.Log("Player is Dead");
         OnDeath?.Invoke();
     }
+
+    public void ResetHealth()
+    {
+        Health = MaxHealth;
+        IsAlive = true;
+    }
+
     public virtual void Awake()
     {
         MaxHealth = 100;

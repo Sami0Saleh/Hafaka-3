@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
     private float _fallTimeoutDelta;
 
     [SerializeField] private CharacterController _controller;
+    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private Transform _spawnPoint;
 
     [SerializeField] Inventory _inventory;
     [SerializeField] CraftingSystem _craft;
@@ -87,6 +89,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _isInventoryOpen = false;
     private const float _threshold = 0.01f;
+    private float lastHitTime = 0;
+    private float hitCooldown = 1f;
 
     private bool _isCurrentDeviceMouse
     {
@@ -147,14 +151,15 @@ public class PlayerController : MonoBehaviour
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
-        Cursor.lockState = CursorLockMode.Locked;
+        _playerHealth.OnDeath += Death;
     }
 
     private void Update()
     {
         JumpAndGravity();
         GroundedCheck();
-        Move();
+        if (_playerHealth.IsAlive)
+            Move();
     }
 
     private void LateUpdate()
@@ -322,10 +327,6 @@ public class PlayerController : MonoBehaviour
         {
             _attackCounter = 0;
         }
-
-        Debug.Log("Attack");
-        //StartCoroutine(AttackCooldown());
-
     }
 
     public void Inventory()
@@ -338,9 +339,6 @@ public class PlayerController : MonoBehaviour
         {
             _craft.SetCraft();
         }
-
-        
-
     }
 
     public void Interact()
@@ -354,6 +352,12 @@ public class PlayerController : MonoBehaviour
         {
             nearbyBoxPickup.Interact();
         }
+    }
+
+    private void Death()
+    {
+        transform.position = _spawnPoint.position;
+        StartCoroutine(ResetHealth());
     }
 
     private void OnDrawGizmosSelected()
@@ -378,6 +382,16 @@ public class PlayerController : MonoBehaviour
         {
             nearbyBoxPickup = boxPickup;
         }
+
+        if (other.CompareTag("EnemyHand"))
+        {
+            if (Time.time - lastHitTime < hitCooldown)
+                return;
+
+            _playerHealth.TakeDamage(50);
+
+            lastHitTime = Time.time;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -392,11 +406,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator AttackCooldown()
+    IEnumerator ResetHealth()
     {
-        yield return new WaitForSeconds(2f);
-        _hasAttacked = false;
-    }
+        yield return new WaitForSeconds(1f);
+        _playerHealth.ResetHealth();
+    }   
 }
 
 
