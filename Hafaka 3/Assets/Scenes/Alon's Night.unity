@@ -27265,7 +27265,8 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5649841169996398829, guid: 15e10b5cc094e4b4a9b290643e0357b6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15e10b5cc094e4b4a9b290643e0357b6, type: 3}

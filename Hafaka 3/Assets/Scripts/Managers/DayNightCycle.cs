@@ -36,7 +36,6 @@ public class DayNightCycle : MonoBehaviour
     {
         OnDayStart?.Invoke();
         ApplyDaySettings();
-        // OnNightStart?.Invoke();
     }
 
     private void Update()

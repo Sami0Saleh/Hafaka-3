@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         DayNightCycle.instance.OnDayStart += On_DayChange;
         DayNightCycle.instance.OnNightStart += On_NightChange;
-
+        _enemy.SetActive(false);
         _currentHealth = _maxHealth;
     }
 
