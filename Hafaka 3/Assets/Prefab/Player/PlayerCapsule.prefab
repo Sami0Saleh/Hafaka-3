@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183771605065424817}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.358, y: 0, z: -34.429}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   TopClamp: 90
   BottomClamp: -90
   _controller: {fileID: 9004543496680742145}
-  _playerHealth: {fileID: 0}
+  _playerHealth: {fileID: 329774417307677452}
   _spawnPoint: {fileID: 0}
   _inventory: {fileID: 4429737636859267538}
   _craft: {fileID: 0}
