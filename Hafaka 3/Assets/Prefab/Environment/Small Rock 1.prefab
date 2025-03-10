@@ -291,8 +291,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8933519
-  m_Center: {x: -0.1275, y: 0.65, z: 0}
+  m_Radius: 1.5
+  m_Center: {x: -0.1275, y: 1.25, z: 0}
 --- !u!114 &6868597941200557716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,6 @@ MonoBehaviour:
   _itemData: {fileID: 11400000, guid: b2f705c86d0027f49ac88f84ec3a5671, type: 2}
   m_TextMeshProUGUI: {fileID: 8429146818340592019}
   _amountInStack: 0
-  ingerdientType: 0
 --- !u!65 &53944268347952917
 BoxCollider:
   m_ObjectHideFlags: 0

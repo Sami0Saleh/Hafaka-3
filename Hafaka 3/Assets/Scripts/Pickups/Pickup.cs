@@ -33,7 +33,7 @@ public class Pickup : MonoBehaviour, IInteractable
     private void Start()
     {
         m_TextMeshProUGUI.enabled = false;
-        m_TextMeshProUGUI.text = $"Press E to pick up the {ItemData.name}";
+        m_TextMeshProUGUI.text = $"'E' to pick up {ItemData.name}";
         m_TextMeshProUGUI.fontSize = 1f;
     }
     public void Interact()  
