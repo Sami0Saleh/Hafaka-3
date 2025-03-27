@@ -414,6 +414,7 @@ public class PlayerController : MonoBehaviour
 
             lastHitTime = Time.time;
         }
+        
     }
 
     private void OnTriggerExit(Collider other)

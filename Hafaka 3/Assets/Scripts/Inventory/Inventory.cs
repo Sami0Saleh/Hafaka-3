@@ -90,6 +90,50 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public bool TryAddHarvestItem(ItemData itemData)
+    {
+        int amountToAdd = itemData.AmountInStack;
+        IngerdientType ingerdientType = itemData.ingerdientType;
+
+        // First, try to add to existing slots with the same pickup
+        foreach (Slot slot in _slots)
+        {
+            if (slot.HasItem && slot.IsSameItem(itemData) && !slot.IsFull)
+            {
+                int stackableAmount = Mathf.Min(slot.RemainingCapacity, amountToAdd);
+                slot.AddToStack(stackableAmount);
+                amountToAdd -= stackableAmount;
+
+                var ingredient = ingerdients.Find(x => x.ingerdientType == itemData.ingerdientType);
+                int index = ingerdients.IndexOf(ingredient);
+                ingredient.amount += itemData.AmountInStack;
+                ingerdients[index] = ingredient;
+
+                if (amountToAdd <= 0)
+                    return true;
+            }
+        }
+
+        // Then, try to assign the remaining itemData to a new slot
+        foreach (Slot slot in _slots)
+        {
+            if (!slot.HasItem)
+            {
+                slot.AssignItem(itemData, amountToAdd, ingerdientType);
+
+                _ingerdientType.ingerdientType = itemData.ingerdientType;
+                _ingerdientType.amount = itemData.AmountInStack;
+                ingerdients.Add(_ingerdientType);
+
+                return true;
+            }
+        }
+
+        // If no space is available, notify the _playerTransform
+        Debug.Log("Inventory Full! Cannot pick up pickup.");
+        return false;
+    }
+
     public bool TryAddBox(BoxPickup boxPickup)
     {
         int amountToAdd = boxPickup.AmountInStack;
