@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a650dbb0c2396c468b23ba9880fed75, type: 3}
-  m_Name: Knife
+  m_Name: Tiny Fruit
   m_EditorClassIdentifier: 
-  ItemName: Knife
-  ItemSprite: {fileID: 21300000, guid: a535c7ea8ed99d743bd6fe43542026d9, type: 3}
+  ItemName: Berry
+  ItemSprite: {fileID: 21300000, guid: 4c8d1df49a4b64049b2cfa9f268a990e, type: 3}
   AmountInStack: 1
   MaxStackSize: 10
-  ItemID: 12
+  ItemID: 5
   ItemPrefab: {fileID: 1025847294838451390, guid: 80040b9f156cae049a126ad3c4569262, type: 3}
-  ingerdientType: 6
+  ingerdientType: 7
   IsUsable: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PickAxe
   m_EditorClassIdentifier: 
   ItemName: PickAxe
-  ItemSprite: {fileID: 21300000, guid: 840fadf1abd09b44e9089221c5d389a0, type: 3}
+  ItemSprite: {fileID: 21300000, guid: c69af04039a5ed64da9b02ddc0e3c9d0, type: 3}
   AmountInStack: 1
   MaxStackSize: 10
   ItemID: 11
