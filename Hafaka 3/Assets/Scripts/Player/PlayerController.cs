@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private const float _threshold = 0.01f;
     private float lastHitTime = 0;
     private float hitCooldown = 1f;
+    private bool _isHarvisting = false;
 
     private bool _isCurrentDeviceMouse
     {
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour
     public int AttackCounter { get => _attackCounter; set => _attackCounter = value; }
     public bool IsInventoryOpen { get => _isInventoryOpen; set => _isInventoryOpen = value; }
     public int AttackDamage { get => _attackDamage; set => _attackDamage = value; }
+    public bool IsHarvisting { get => _isHarvisting; set => _isHarvisting = value; }
 
     private void Awake()
     {

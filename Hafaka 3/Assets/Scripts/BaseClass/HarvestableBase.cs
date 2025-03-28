@@ -13,6 +13,7 @@ public abstract class HarvestableBase : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canHarvest = true;
+            PlayerController.Instance.IsHarvisting = true;
         }
 
         if (other.CompareTag("MultiTool"))
@@ -27,6 +28,7 @@ public abstract class HarvestableBase : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canHarvest = false;
+            PlayerController.Instance.IsHarvisting = false;
         }
     }
 
@@ -34,13 +36,17 @@ public abstract class HarvestableBase : MonoBehaviour
     {
         if (!canHarvest) return;
 
-        currentHits++;
-        PlayHarvestAnimation();
-
-        if (currentHits >= maxHits)
+        if (PlayerController.Instance.IsHarvisting)
         {
-            HarvestComplete();
+            currentHits++;
+            PlayHarvestAnimation();
+
+            if (currentHits >= maxHits)
+            {
+                HarvestComplete();
+            }
         }
+        
     }
 
     protected abstract void HarvestComplete(); // Unique behavior per subclass
