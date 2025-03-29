@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Inventory _inventory;
     [SerializeField] CraftingSystem _craft;
+    [SerializeField] private ActionBar _actionBar;
+
     private Pickup nearbyPickup;
     private BoxPickup nearbyBoxPickup;
 
@@ -167,6 +169,7 @@ public class PlayerController : MonoBehaviour
         if (_inventory.GetInventory.activeSelf || _craft.GetCraft.activeSelf)
         {
             _isInventoryOpen = true;
+            _actionBar.gameObject.SetActive(false);
             _input.Player.Disable();
             _input.UI.Enable();
             _input.UI.Inventory.started += _ => Inventory();
@@ -178,6 +181,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             _isInventoryOpen = false;
+            _actionBar.gameObject.SetActive(true);
             _input.Player.Enable();
             _input.UI.Disable();
 
