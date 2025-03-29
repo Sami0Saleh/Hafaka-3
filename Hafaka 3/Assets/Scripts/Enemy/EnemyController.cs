@@ -1,244 +1,383 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour,IDamageable
 {
-    // State Enum
-    public enum EnemyState { Patrol, Chase, Attack, ReceiveHit, Death }
-    public EnemyState enemyState = EnemyState.Patrol;
+    [Header("References")]
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private GameObject enemyModel;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject leftHandHitbox;
+    [SerializeField] private GameObject rightHandHitbox;
 
-    // Components
-    [SerializeField] private NavMeshAgent _agent;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private Transform _playerTransform;
-    [SerializeField] private GameObject _enemy;
-    //private EnemyHealthBar _enemyHealthBar;
+    [Header("Movement Settings")]
+    [SerializeField] private float patrolSpeed = 3.5f;
+    [SerializeField] private float chaseSpeed = 6f;
+    [SerializeField] private float decelerationRate = 2f;
+    [SerializeField] private float accelerationRate = 3f;
 
-    // Configurable Parameters
-    [Header("Vision Settings")]
-    [SerializeField] private float _visionRange = 10f;
-    [SerializeField] private float _visionAngle = 60f;
-
-    [Header("Attack Settings")]
-    [SerializeField] private float _attackRange = 2f;
-    [SerializeField] private float _attackDelay = 1f;
-    [SerializeField] private int _attackDamage = 1;
-
-    [Header("Patrol Settings")]
-    [SerializeField] private Transform[] _patrolPoints;
-    [SerializeField] private int _currentPatrolIndex = 0;
+    [Header("Detection Settings")]
+    [SerializeField] private float detectionDistance = 15f;
+    [SerializeField] private float attackDistance = 5f;
+    [SerializeField] private float attackCooldown = 1.5f;
 
     [Header("Health Settings")]
-    [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private int _currentHealth;
+    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private float fadeOutDuration = 2f;
+    [SerializeField] private float respawnDelay = 3f;
 
-    // State Flags
-    private bool _isDead = false;
-    private float lastHitTime = 0;
-    private float hitCooldown = 1f;
+    private NavMeshAgent navMeshAgent;
+    private EnemyState enemyState;
+    private int currentPatrolIndex = 0;
+    private bool isAttacking = false;
+    private bool isNight = false;
+    private int currentHealth;
+    private bool useLeftHand = true;
+    private float currentSpeed;
+    private bool missedAttack = false;
+    private Vector3 oppositeDirection;
+    private Material enemyMaterial;
+    private float initialAttackDistance;
 
-    public bool IsDead { get => _isDead; protected set => _isDead = value; }
-    
+    private void Awake()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        enemyState = EnemyState.Idle;
+
+        // Initialize enemy material for fade effect
+  
+
+        currentHealth = maxHealth;
+        initialAttackDistance = attackDistance;
+
+        // Disable hitboxes initially
+        if (leftHandHitbox) leftHandHitbox.SetActive(false);
+        if (rightHandHitbox) rightHandHitbox.SetActive(false);
+    }
+
     private void Start()
     {
-        DayNightCycle.instance.OnDayStart += On_DayChange;
-        DayNightCycle.instance.OnNightStart += On_NightChange;
-        _enemy.SetActive(false);
-        _currentHealth = _maxHealth;
-    }
-
-    void On_DayChange()
-    {
-        _enemy.SetActive(false);
-    }
-    void On_NightChange()
-    {
-       _enemy.SetActive(true);
-    }
-
-    // State Machine
-    private void Update()
-    {
-        if (_isDead) return;
-
-        switch (enemyState)
+        // Select random patrol point to start
+        if (patrolPoints.Length > 0)
         {
-            case EnemyState.Patrol:
-                Patrol();
-                break;
-            case EnemyState.Chase:
-                Chase();
-                break;
-            case EnemyState.Attack:
-                Attack();
-                break;
-            case EnemyState.ReceiveHit:
-                ReceiveHit();
-                break;
-            case EnemyState.Death:
-                Death();
-                break;
+            currentPatrolIndex = Random.Range(0, patrolPoints.Length);
         }
     }
 
-    // State Methods
-    private void Patrol()
+    private void Update()
     {
-        if (_patrolPoints.Length == 0) return;
+        if (!isNight || currentHealth <= 0) return; // Enemy only acts at night and when alive
 
-        _agent.isStopped = false;
-        _agent.SetDestination(_patrolPoints[_currentPatrolIndex].position);
-        float distance = Vector3.Distance(transform.position, _patrolPoints[_currentPatrolIndex].position);
-        _animator.SetBool("IsAttacking", false);
-        _animator.SetBool("IsWalking", true);
-        if (distance < 0.5f)
+        StateUpdate();
+
+        // Handle acceleration/deceleration
+        if (enemyState == EnemyState.Chase)
         {
-            _currentPatrolIndex = _currentPatrolIndex + 1;
-            if (_currentPatrolIndex >= _patrolPoints.Length)
+            currentSpeed = Mathf.Lerp(currentSpeed, chaseSpeed, Time.deltaTime * accelerationRate);
+        }
+        else if (missedAttack)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime * decelerationRate);
+            if (currentSpeed < 0.5f)
             {
-                _currentPatrolIndex = 0;
+                missedAttack = false;
+                ResetAggressionFromOppositeDirection();
             }
         }
 
-        if (CanSeePlayer())
+        navMeshAgent.speed = currentSpeed;
+    }
+
+    private void StateUpdate()
+    {
+        float distance = Vector3.Distance(playerHealth.transform.position, transform.position);
+
+        switch (enemyState)
         {
-            ChangeState(EnemyState.Chase);
+            case EnemyState.Idle:
+                // Transition to wandering
+                enemyState = EnemyState.Wandering;
+                Patrol();
+                break;
+
+            case EnemyState.Wandering:
+                // Check if patrol destination reached
+                if (navMeshAgent.remainingDistance < 0.5f)
+                {
+                    currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+                    navMeshAgent.SetDestination(patrolPoints[currentPatrolIndex].position);
+                }
+
+                // Detect player
+                if (distance <= detectionDistance)
+                {
+                    enemyState = EnemyState.Chase;
+                    currentSpeed = patrolSpeed; // Start acceleration from current speed
+                }
+                break;
+
+            case EnemyState.Chase:
+                // Update destination to player position
+                navMeshAgent.SetDestination(playerHealth.transform.position);
+
+                // Within attack range
+                if (distance <= attackDistance && !isAttacking)
+                {
+                    enemyState = EnemyState.Attack;
+                    StartCoroutine(Attack());
+                }
+
+                // Lost player
+                if (distance > detectionDistance)
+                {
+                    enemyState = EnemyState.Wandering;
+                    Patrol();
+                }
+                break;
+
+            case EnemyState.Attack:
+                // Handled in the Attack coroutine
+                if (!isAttacking)
+                {
+                    if (distance > attackDistance)
+                    {
+                        enemyState = EnemyState.Chase;
+                    }
+                }
+                break;
         }
     }
 
-    private void Chase()
+    private void Patrol()
     {
-        _agent.isStopped = false;
-        _agent.SetDestination(_playerTransform.position);
-        _animator.SetBool("IsAttacking", false);
-        _animator.SetBool("IsWalking", true);
-        if (Vector3.Distance(transform.position, _playerTransform.position) <= _attackRange)
-        {
-            ChangeState(EnemyState.Attack);
-            _animator.SetBool("IsWalking", false);
-        }
-        else if (!CanSeePlayer())
-        {
-            ChangeState(EnemyState.Patrol);
-            _animator.SetBool("IsWalking", true);
-        }
+        if (patrolPoints.Length == 0) return;
+
+        navMeshAgent.SetDestination(patrolPoints[currentPatrolIndex].position);
+        currentSpeed = patrolSpeed;
+        navMeshAgent.speed = patrolSpeed;
     }
-        
-    private void Attack()
-    {
-        _agent.isStopped = true;
-        if (Vector3.Distance(transform.position, _playerTransform.position) <= _attackRange)
-        {
-            _animator.SetBool("IsAttacking", true);
 
-            // Deal damage to the player here
-            Debug.Log("Melee attack hit the player!");
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+
+        // Calculate if player is within range to actually hit
+        bool canActuallyHit = Vector3.Distance(playerHealth.transform.position, transform.position) <= attackDistance;
+
+        // Play animation
+        if (animator != null)
+        {
+            animator.SetTrigger(useLeftHand ? "LeftAttack" : "RightAttack");
         }
 
-        // Return to appropriate state based on player distance
-        if (Vector3.Distance(transform.position, _playerTransform.position) > _attackRange)
-        {
-            ChangeState(EnemyState.Chase);
-        }
-    }  
+        // Wait for animation to reach hit point
+        yield return new WaitForSeconds(0.3f);
 
-    private void ReceiveHit()
-    {
-        _animator.SetBool("IsWalking", false);
-        if (_currentHealth <= 0)
+        // Activate appropriate hitbox
+        if (useLeftHand)
         {
-            ChangeState(EnemyState.Death);
+            if (leftHandHitbox) leftHandHitbox.SetActive(true);
         }
         else
         {
-            ChangeState(EnemyState.Chase);
+            if (rightHandHitbox) rightHandHitbox.SetActive(true);
         }
-    }
 
-    private void Death()
-    {
-        _agent.isStopped = true;
-        _animator.SetBool("IsWalking", false);
-        _isDead = true;
-        SpawnOnDeath();
-    }
-
-    // Utility Methods
-    public void TakeDamage(int amount)
-    {
-        if (_isDead) return;
-
-        _currentHealth -= amount;
-        //enemyHealthBar.UpdateHealthBar(_currentHealth, _maxHealth);
-
-        ChangeState(EnemyState.ReceiveHit);
-    }
-
-    private bool CanSeePlayer()
-    {
-        Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
-        float angle = Vector3.Angle(transform.forward, directionToPlayer);
-
-        if (angle < _visionAngle / 2f && Vector3.Distance(transform.position, _playerTransform.position) <= _visionRange)
+        // Check if hit connects
+        if (canActuallyHit)
         {
-            return true;
+            // Deal damage to player
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10); // Assuming TakeDamage method exists on PlayerHealth
+            }
         }
-        return false;
-    }
-
-    private void SpawnOnDeath()
-    {
-        int index = Random.Range(0, _patrolPoints.Length);
-        transform.position = _patrolPoints[index].position;
-        _currentHealth = _maxHealth;
-        _isDead = false;
-        ChangeState(EnemyState.Patrol);
-    }
-
-    private void ChangeState(EnemyState newState)
-    {
-        enemyState = newState;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Ignore hits that occur too close to the last hit
-        if (Time.time - lastHitTime < hitCooldown)
-            return;
-
-        if (other.CompareTag("MultiTool"))
+        else
         {
-            TakeDamage(PlayerController.Instance.AttackDamage);
+            // Mark as missed for deceleration
+            missedAttack = true;
+            oppositeDirection = transform.position - playerHealth.transform.position;
         }
 
-        lastHitTime = Time.time;
+        // Deactivate hitbox
+        yield return new WaitForSeconds(0.1f);
+        if (leftHandHitbox) leftHandHitbox.SetActive(false);
+        if (rightHandHitbox) rightHandHitbox.SetActive(false);
+
+        // Switch hands for next attack
+        useLeftHand = !useLeftHand;
+
+        // Cooldown
+        yield return new WaitForSeconds(attackCooldown);
+
+        isAttacking = false;
+        enemyState = EnemyState.Chase;
     }
 
-    private void OnDrawGizmosSelected()
+    private void ResetAggressionFromOppositeDirection()
     {
-        if (_playerTransform == null) return;
-
-        // Set gizmo color for the vision range
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);  // Orange with some transparency
-        Gizmos.DrawWireSphere(transform.position, _visionRange);  // Draw vision range
-
-        // Set gizmo color for the vision cone
-        Gizmos.color = Color.yellow;
-
-        Vector3 forward = transform.forward * _visionRange;
-        Vector3 leftBoundary = Quaternion.Euler(0, -_visionAngle / 2f, 0) * forward;
-        Vector3 rightBoundary = Quaternion.Euler(0, _visionAngle / 2f, 0) * forward;
-
-        // Draw the vision cone boundaries
-        Gizmos.DrawRay(transform.position, leftBoundary);
-        Gizmos.DrawRay(transform.position, rightBoundary);
-
-        // Optional: Draw a line to the player if they are within range
-        if (CanSeePlayer())
+        // Move in the opposite direction temporarily to reset aggression
+        if (oppositeDirection != Vector3.zero)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, _playerTransform.position);
+            Vector3 newPosition = transform.position + oppositeDirection.normalized * 2f;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(newPosition, out hit, 5f, NavMesh.AllAreas))
+            {
+                transform.position = hit.position;
+            }
+
+            // Temporarily increase attack distance to prevent immediate re-attack
+            StartCoroutine(ResetAttackDistance());
         }
     }
 
+    private IEnumerator ResetAttackDistance()
+    {
+        attackDistance *= 1.5f;
+        yield return new WaitForSeconds(2f);
+        attackDistance = initialAttackDistance;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (currentHealth <= 0) return;
+
+        currentHealth -= (int)damage;
+
+        // Play hit animation/effect  
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // Stop movement
+        navMeshAgent.isStopped = true;
+        enemyState = EnemyState.Idle;
+
+        // Disable colliders
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        // Play death animation
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+
+        // Fade out
+        //StartCoroutine(FadeOut());
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float elapsedTime = 0;
+        Color originalColor = enemyMaterial.color;
+
+        // Gradually fade out
+        while (elapsedTime < fadeOutDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeOutDuration);
+
+            // Update material transparency
+            if (enemyMaterial != null)
+            {
+                Color newColor = originalColor;
+                newColor.a = alpha;
+                enemyMaterial.color = newColor;
+            }
+
+            yield return null;
+        }
+
+        // Hide the enemy
+        enemyModel.SetActive(false);
+
+        // Wait for respawn delay
+        yield return new WaitForSeconds(respawnDelay);
+
+        // Respawn
+        Respawn();
+    }
+
+    private void Respawn()
+    {
+        // Reset health
+        currentHealth = maxHealth;
+
+        // Choose random patrol point for respawn
+        if (patrolPoints.Length > 0)
+        {
+            currentPatrolIndex = Random.Range(0, patrolPoints.Length);
+            transform.position = patrolPoints[currentPatrolIndex].position;
+        }
+
+        // Re-enable colliders
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
+
+        // Reset material transparency
+        if (enemyMaterial != null)
+        {
+            Color color = enemyMaterial.color;
+            color.a = 1f;
+            enemyMaterial.color = color;
+        }
+
+        // Show the enemy
+        enemyModel.SetActive(true);
+
+        // Reset state
+        enemyState = EnemyState.Idle;
+        navMeshAgent.isStopped = false;
+        missedAttack = false;
+    }
+
+    public void SetNightState(bool nightActive)
+    {
+        isNight = nightActive;
+
+        if (nightActive)
+        {
+            // Only show enemy model if it has health
+            enemyModel.SetActive(currentHealth > 0);
+
+            // If this is the first time activating at night, set initial patrol
+            if (enemyState == EnemyState.Idle)
+            {
+                Patrol();
+                enemyState = EnemyState.Wandering;
+            }
+        }
+        else
+        {
+            // Hide during day
+            enemyModel.SetActive(false);
+        }
+    }
+}
+
+public enum EnemyState
+{
+    Idle,
+    Wandering,
+    Chase,
+    Attack
 }
