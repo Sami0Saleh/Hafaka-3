@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - MultiTool
   - EnemyHand
+  - CraftingBench
+  - Boat
+  - BoatMotor
   layers:
   - Default
   - TransparentFX

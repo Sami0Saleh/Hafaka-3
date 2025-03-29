@@ -35,7 +35,8 @@ public enum IngerdientType
     Mushroom2,
     Mushroom3,
     Fish,
-    WoodLog
+    WoodLog,
+    BoatMotor
 }
 
 public enum BluePrintType

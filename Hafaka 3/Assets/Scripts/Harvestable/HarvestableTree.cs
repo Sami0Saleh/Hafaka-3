@@ -17,6 +17,7 @@ public class HarvestableTree : HarvestableBase
         if (upperPart != null) upperPart.SetActive(false);
 
         AddResourcesToInventory(_resourceType);
+        PlayerController.Instance.IsHarvisting = false;
         Destroy(gameObject, 2f);
     }
 }

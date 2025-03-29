@@ -122,18 +122,7 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
-    private int CountItemInInventory(string itemName)
-    {
-        int count = 0;
-        foreach (var slot in _inventoryGameObject.GetComponentsInChildren<Slot>())
-        {
-            if (slot.HasItem && slot.IsSameItem(itemName))
-            {
-                count += slot.Item.Amount;
-            }
-        }
-        return count;
-    }
+    
 
     public void CraftBlueprint(BluePrintData blueprint)
     {

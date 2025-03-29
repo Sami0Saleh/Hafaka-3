@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
     private float lastHitTime = 0;
     private float hitCooldown = 1f;
     private bool _isHarvisting = false;
+    private bool _isCraftingBench;
 
     private bool _isCurrentDeviceMouse
     {
@@ -380,6 +381,11 @@ public class PlayerController : MonoBehaviour
         {
             nearbyBoxPickup.Interact();
         }
+
+        else if (_isCraftingBench)
+        {
+
+        }
     }
 
     private void Death()
@@ -420,7 +426,23 @@ public class PlayerController : MonoBehaviour
 
             lastHitTime = Time.time;
         }
-        
+
+        if (other.CompareTag("CraftingBench"))
+        {
+            _isCraftingBench = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent<Pickup>(out Pickup pickup))
+        {
+            nearbyPickup = pickup;
+        }
+        else if (other.TryGetComponent<BoxPickup>(out BoxPickup boxPickup))
+        {
+            nearbyBoxPickup = boxPickup;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -432,6 +454,11 @@ public class PlayerController : MonoBehaviour
         else if (other.TryGetComponent<BoxPickup>(out BoxPickup Boxpickup) && nearbyBoxPickup == Boxpickup)
         {
             nearbyBoxPickup = null;
+        }
+
+        if (other.CompareTag("CraftingBench"))
+        {
+            _isCraftingBench = false;
         }
     }
 

@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         _pause.SetActive(false);
         IsPaused = false;
         _input.UI.Escape.Disable();
+        _input.Player.Escape.Enable();
         Time.timeScale = 1;
     }
 

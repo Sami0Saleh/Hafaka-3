@@ -1,5 +1,6 @@
-using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private Material DaySkybox;
     [SerializeField] private Material NightSkybox;
 
+    [Header("Transition Settings")]
+    [SerializeField] private GameObject twirlEffect; // Full-screen UI Image with Twirl Shader
+    [SerializeField] private float transitionDuration = 2f;
 
     public float dayDuration = 180f;
     private float nightDuration = 60f;
@@ -17,19 +21,15 @@ public class DayNightCycle : MonoBehaviour
 
     private float timeCounter = 0f;
     private bool isDay = true;
-    public event Action OnDayStart;
-    public event Action OnNightStart;
+    public event System.Action OnDayStart;
+    public event System.Action OnNightStart;
 
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     private void Start()
@@ -44,46 +44,73 @@ public class DayNightCycle : MonoBehaviour
 
         if (isDay && timeCounter >= dayDuration)
         {
-            SwitchToNight();
+            StartCoroutine(TransitionToNight());
         }
         else if (!isDay && timeCounter >= nightDuration)
         {
-            SwitchToDay();
+            StartCoroutine(TransitionToDay());
             cycleCount++;
             nightDuration = Mathf.Min(nightDuration + 20f, maxNightDuration);
         }
     }
 
-    private void SwitchToNight()
+    private IEnumerator TransitionToNight()
     {
         isDay = false;
         timeCounter = 0f;
-        Debug.Log("Night has begun!");
-        OnNightStart?.Invoke();
+        Debug.Log("Starting transition to night...");
+
+        yield return StartCoroutine(PlayTwirlEffect());
         ApplyNightSettings();
     }
 
-    private void SwitchToDay()
+    private IEnumerator TransitionToDay()
     {
         isDay = true;
         timeCounter = 0f;
-        Debug.Log("Day has started!");
-        OnDayStart?.Invoke();
+        Debug.Log("Starting transition to day...");
+
+        yield return StartCoroutine(PlayTwirlEffect());
         ApplyDaySettings();
+    }
+
+    private IEnumerator PlayTwirlEffect()
+    {
+        twirlEffect.SetActive(true);
+        float elapsedTime = 0f;
+
+        // Store initial and target values
+        Color initialLightColor = directionalLight.color;
+        float initialLightIntensity = directionalLight.intensity;
+        Color targetLightColor = isDay ? new Color(0.929f, 0.972f, 1.000f) : Color.black;
+        float targetLightIntensity = isDay ? 1.5f : 1f;
+
+        while (elapsedTime < transitionDuration)
+        {
+            float t = elapsedTime / transitionDuration;
+            directionalLight.color = Color.Lerp(initialLightColor, targetLightColor, t);
+            directionalLight.intensity = Mathf.Lerp(initialLightIntensity, targetLightIntensity, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure final values are set
+        directionalLight.color = targetLightColor;
+        directionalLight.intensity = targetLightIntensity;
+
+        twirlEffect.SetActive(false);
     }
 
     private void ApplyDaySettings()
     {
-        directionalLight.color = new Color(0.929f, 0.972f, 1.000f); // 6700K light color
-        directionalLight.intensity = 1.5f;
+        Debug.Log("Day settings applied.");
         fogEffect.Stop();
         ChangeSkybox(DaySkybox);
     }
 
     private void ApplyNightSettings()
     {
-        directionalLight.color = Color.black;
-        directionalLight.intensity = 1f;
+        Debug.Log("Night settings applied.");
         fogEffect.Play();
         ChangeSkybox(NightSkybox);
     }
@@ -102,5 +129,3 @@ public class DayNightCycle : MonoBehaviour
         }
     }
 }
-
-

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -176,6 +177,67 @@ public class Inventory : MonoBehaviour
         // If no space is available, notify the _playerTransform
         Debug.Log("Inventory Full! Cannot pick up pickup.");
         return false;
+    }
+
+    public bool HasItem(string itemName)
+    {
+        bool hasItem = false;
+        foreach (Slot slot in _slots)
+        {
+            if (slot.HasItem && slot.IsSameItem(itemName))
+            {
+                hasItem = true;
+            }
+        }
+        return hasItem;
+    }
+
+    public int GetItemCount(string itemName)
+    {
+        foreach (Slot slot in _slots)
+        {
+            if (slot.HasItem && slot.IsSameItem(itemName))
+            {
+                return slot.Item.Amount;
+            }
+        }
+        return 0;
+    }
+
+    public void RemoveItemFromInventory(string itemName, int amountToRemove)
+    {
+        foreach (Slot slot in _slots)
+        {
+            if (slot.HasItem && slot.IsSameItem(itemName))
+            {
+                int amountToRemoveFromSlot = Mathf.Min(amountToRemove, slot.Item.Amount);
+                slot.Item.RemoveAmount(amountToRemoveFromSlot);
+
+
+                var ingredient = ingerdients.Find(x => x.ingerdientType == slot.Item.IngerdientType);
+                int index = ingerdients.IndexOf(ingredient);
+                ingredient.amount -= amountToRemove;
+                if (ingredient.amount <= 0)
+                {
+                    ingerdients.RemoveAt(index);
+                }
+                else
+                {
+                    ingerdients[index] = ingredient;
+                }
+
+                amountToRemove -= amountToRemoveFromSlot;
+                slot.UpdateSlotUI();
+                index = 0;
+                /*if (slot.Item.Amount <= 0)
+                {
+                    slot.UpdateSlotUI();
+                }*/
+
+                if (amountToRemove <= 0)
+                    break;
+            }
+        }
     }
 
 
