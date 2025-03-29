@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour,IDamageable
 
     private void Update()
     {
-        if (!isNight || currentHealth <= 0) return; // Enemy only acts at night and when alive
+        //if (!isNight || currentHealth <= 0) return; // Enemy only acts at night and when alive
 
         StateUpdate();
 
@@ -154,10 +154,14 @@ public class EnemyController : MonoBehaviour,IDamageable
     private void Patrol()
     {
         if (patrolPoints.Length == 0) return;
-
+        if (!isAttacking)
+        {
+            animator.SetBool("IsWalking",true);
+        }
         navMeshAgent.SetDestination(patrolPoints[currentPatrolIndex].position);
         currentSpeed = patrolSpeed;
         navMeshAgent.speed = patrolSpeed;
+        
     }
 
     private IEnumerator Attack()
