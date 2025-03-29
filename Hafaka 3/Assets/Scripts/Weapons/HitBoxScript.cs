@@ -31,7 +31,7 @@ public class HitBoxScript : MonoBehaviour
         }
 
         // Disable the GameObject at start
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     private void OnEnable()
