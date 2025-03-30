@@ -63,8 +63,9 @@ public class BridgeRepair : MonoBehaviour
             if (playerInRange && Input.GetKeyDown(KeyCode.E))
             {
                 TryRepair();
-                UpdateUIText();
+                
             }
+            UpdateUIText();
         }
     }
 
