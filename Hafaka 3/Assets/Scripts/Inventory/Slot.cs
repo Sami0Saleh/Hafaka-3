@@ -122,25 +122,36 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public void OnDrop(PointerEventData eventData)
     {
         Slot sourceSlot = eventData.pointerDrag?.GetComponent<Slot>();
+        
+
         if (sourceSlot != null && sourceSlot.HasItem)
         {
             if (HasItem && IsSameItem(sourceSlot._item.Data))
             {
                 int stackableAmount = Mathf.Min(RemainingCapacity, sourceSlot._item.Amount);
                 AddToStack(stackableAmount);
+                if (sourceSlot.isInventoryBarSlot)
+                {
+                    actionBar.ClearSlot(sourceSlot, sourceSlot.transform.GetSiblingIndex(), sourceSlot._item);
+
+                }
                 sourceSlot._item.RemoveAmount(stackableAmount);
+                
             }
             else if (!HasItem && isInventoryBarSlot)
             {
                 if (sourceSlot.Item.Data.IsUsable)
                 {
                     AssignItem(sourceSlot._item.Data, sourceSlot._item.Amount, sourceSlot._item.IngerdientType);
+                    if (sourceSlot.isInventoryBarSlot)
+                    {
+                        actionBar.ClearSlot(sourceSlot, sourceSlot.transform.GetSiblingIndex(), sourceSlot._item);
+
+                    }
                     Destroy(sourceSlot._item.gameObject);
                     actionBar.UpdateSlot(sourceSlot, transform.GetSiblingIndex(), _item);
-                    actionBar.ClearSlot(sourceSlot, sourceSlot.transform.GetSiblingIndex(), sourceSlot._item);
                     sourceSlot._item = null;
                     
-
                 }
                 else
                 {
@@ -150,8 +161,14 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
             else if (!HasItem)
             {
                 AssignItem(sourceSlot._item.Data, sourceSlot._item.Amount, sourceSlot._item.IngerdientType);
+                if (sourceSlot.isInventoryBarSlot)
+                {
+                    actionBar.ClearSlot(sourceSlot, sourceSlot.transform.GetSiblingIndex(), sourceSlot._item);
+
+                }
                 Destroy(sourceSlot._item.gameObject);
                 sourceSlot._item = null;
+                
             }
 
             UpdateSlotUI();
