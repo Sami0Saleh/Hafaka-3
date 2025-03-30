@@ -60,6 +60,8 @@ public class EnemyController : MonoBehaviour,IDamageable
 
     private void Start()
     {
+        DayNightCycle.instance.OnDayStart += On_DayChange;
+        DayNightCycle.instance.OnNightStart += On_NightChange;
         // Select random patrol point to start
         if (patrolPoints.Length > 0)
         {
@@ -69,7 +71,7 @@ public class EnemyController : MonoBehaviour,IDamageable
 
     private void Update()
     {
-        //if (!isNight || currentHealth <= 0) return; // Enemy only acts at night and when alive
+        if (!isNight || currentHealth <= 0) return; // Enemy only acts at night and when alive
 
         StateUpdate();
 
@@ -89,6 +91,16 @@ public class EnemyController : MonoBehaviour,IDamageable
         }
 
         navMeshAgent.speed = currentSpeed;
+    }
+
+    private void On_DayChange()
+    {
+        SetNightState(false);
+    }
+
+    private void On_NightChange()
+    {
+        SetNightState(true);
     }
 
     private void StateUpdate()
@@ -361,7 +373,7 @@ public class EnemyController : MonoBehaviour,IDamageable
         if (nightActive)
         {
             // Only show enemy model if it has health
-            enemyModel.SetActive(currentHealth > 0);
+            enemyModel.SetActive(true);
 
             // If this is the first time activating at night, set initial patrol
             if (enemyState == EnemyState.Idle)

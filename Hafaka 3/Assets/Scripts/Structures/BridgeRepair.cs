@@ -7,6 +7,7 @@ public class BridgeRepair : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Material repairedMaterial;
     [SerializeField] private TextMeshPro m_TextMeshProUGUI;
+    [SerializeField] private Collider bridgeCollider;
 
     [SerializeField] private int _amountOfBranchesNeeded = 10;
     [SerializeField] private int _amountOfLogsNeeded = 5;
@@ -103,6 +104,7 @@ public class BridgeRepair : MonoBehaviour
         if (IsRepaired)
         {
             meshRenderer.material = repairedMaterial; // Change material when fully repaired
+            bridgeCollider.enabled = false;
             Debug.Log("Bridge Repaired!");
         }
     }

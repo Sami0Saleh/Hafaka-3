@@ -59,7 +59,7 @@ public class DayNightCycle : MonoBehaviour
         isDay = false;
         timeCounter = 0f;
         Debug.Log("Starting transition to night...");
-
+        OnNightStart?.Invoke();
         yield return StartCoroutine(PlayTwirlEffect());
         ApplyNightSettings();
     }
@@ -69,7 +69,7 @@ public class DayNightCycle : MonoBehaviour
         isDay = true;
         timeCounter = 0f;
         Debug.Log("Starting transition to day...");
-
+        OnDayStart?.Invoke();
         yield return StartCoroutine(PlayTwirlEffect());
         ApplyDaySettings();
     }
