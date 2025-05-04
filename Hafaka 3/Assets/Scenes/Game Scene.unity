@@ -37283,6 +37283,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 411513032}
     - target: {fileID: 2747332801004238850, guid: aa7bacaa652e8fa42aef54883c1082f9, type: 3}
+      propertyPath: _actionBar
+      value: 
+      objectReference: {fileID: 1681273145}
+    - target: {fileID: 2747332801004238850, guid: aa7bacaa652e8fa42aef54883c1082f9, type: 3}
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1274422831}
